@@ -1,63 +1,43 @@
 import React, { useState } from "react";
 import "./CircularNavigation.scss";
 
-const navItems = [
-  {
-    icon: "home",
-    text: "Home"
-  },
-  {
-    icon: "announcement",
-    text: "About"
-  },
-  {
-    icon: "assignment",
-    text: "Projects"
-  },
-  {
-    icon: "build",
-    text: "Labs"
-  },
-  {
-    icon: "email",
-    text: "Contact"
-  }
-]
-
-const CircularNavigation = ({ overlay = false, overlayColor = "#000" }) => {
+const CircularNavigation = props => {
 
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { overlay = false, overlayColor = "#000" } = props;
+
+  const onClickOverlay = () => setIsNavOpen(!isNavOpen);
 
   const overlayStyle = {
     backgroundColor: overlayColor,
     display: "block"
   }
 
-  const onClickOverlay = () => {
-    setIsNavOpen(!isNavOpen);
-  }
-
   return (
-    <nav id="circular-nav-wrapper"
-      className={`circular-nav-wrapper ${isNavOpen ? "circular-nav-open" : ""}`}>
+    <nav className={`circular-nav-wrapper ${isNavOpen ? "circular-nav-open" : ""}`}>
       <div className={`circular-nav-toggle ${isNavOpen ? "circular-nav-open" : ""}`} onClick={onClickOverlay}>
         <i className="material-icons">add</i>
       </div>
-      <div className={`circular-nav-panel ${isNavOpen ? "circular-nav-open" : ""}`}></div>
+      <div className={`circular-nav-bg ${isNavOpen ? "circular-nav-open" : ""}`}></div>
       <ul className={`circular-nav-menu ${isNavOpen ? "circular-nav-open" : ""}`}>
-        {navItems.map((item, index) => (
-          <li className={`circular-nav-item circular-nav-item-${index + 1}`}>
-            <a href="/">
-              <i className="material-icons">{item.icon}</i>
-              <span>{item.text}</span>
-            </a>
-          </li>
-        ))
-        }
+        {React.Children.map(props.children, (child, index) =>
+          React.cloneElement(child, {
+            index
+          })
+        )}
       </ul>
-      {overlay && <div style={overlayStyle} className='circular-nav-overlay'></div>}
+      {overlay && <div style={isNavOpen ? overlayStyle : {}} className='circular-nav-overlay' onClick={onClickOverlay}></div>}
     </nav>
   )
 };
+
+CircularNavigation.item = ({ index, href, icon, children }) => (
+  <li key={children} className={`circular-nav-item circular-nav-item-${index + 1}`}>
+    <a href={href}>
+      <i className="material-icons">{icon}</i>
+      <span>{children}</span>
+    </a>
+  </li>
+)
 
 export default CircularNavigation;
