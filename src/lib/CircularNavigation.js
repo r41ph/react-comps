@@ -22,14 +22,14 @@ const propTypes = {
   /**
    * Controls if the icons are visible
    */
-  showIcon: PropTypes.bool
+  showIcons: PropTypes.bool
 }
 
 const defaultProps = {
   overlay: false,
   overlayColor: "#000",
   showText: false,
-  showIcon: true
+  showIcons: true
 }
 
 
@@ -40,7 +40,7 @@ const CircularNavigation = props => {
     overlay = false,
     overlayColor = "#000",
     showText = false,
-    showIcon = true
+    showIcons = true
   } = props;
 
   const overlayStyle = {
@@ -54,7 +54,7 @@ const CircularNavigation = props => {
 
   const menuClasses = cx('circular-nav-menu', {
     "circular-nav-menu__show-text": showText,
-    "circular-nav-menu__show-icon": showIcon
+    "circular-nav-menu__show-icon": showIcons
   })
 
   const toggle = () => setNavOpen(!navOpen);
