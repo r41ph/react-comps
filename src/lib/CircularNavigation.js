@@ -37,10 +37,10 @@ const CircularNavigation = props => {
   const [navOpen, setNavOpen] = useState(false);
 
   const {
-    overlay = false,
-    overlayColor = "#000",
-    showText = false,
-    showIcons = true
+    overlay,
+    overlayColor,
+    showText,
+    showIcons
   } = props;
 
   const overlayStyle = {
