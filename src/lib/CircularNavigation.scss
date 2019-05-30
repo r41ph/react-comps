@@ -97,11 +97,10 @@ $circular-nav-item-text-color: #000;
       height: 15px;
       visibility: hidden;
       transform: rotate(-115deg);
-      transition: bottom .5s $cubic-bezier,
-        left .5s $cubic-bezier,
-        width .5s $cubic-bezier,
-        height .5s $cubic-bezier,
-        transform 1s $cubic-bezier;
+      transition: bottom .2s $cubic-bezier,
+        left .2s $cubic-bezier,
+        width .2s $cubic-bezier,
+        height .2s $cubic-bezier;
 
       // Place the icons in the center of the panel before start transition
       &-1,
