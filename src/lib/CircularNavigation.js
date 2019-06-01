@@ -59,6 +59,11 @@ const CircularNavigation = props => {
 
   const toggle = () => setNavOpen(!navOpen);
 
+  if (!props.children) {
+    throw new Error(
+      `CircularNavigation component cannot be rendered without CircularNavigation.item component(s) as child(s)`,
+    )
+  }
   return (
     <nav className={`circular-nav-wrapper ${isNavOpen}`}>
       <div className={`circular-nav-toggle ${isNavOpen}`} onClick={toggle}>
