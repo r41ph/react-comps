@@ -45,17 +45,6 @@ $circular-nav-item-text-color: #000;
       opacity: .8;
       cursor: pointer;
     }
-
-    // Navigation open
-    &.circular-nav-open {
-      border: 2px solid #fff;
-      transform: rotate(135deg);
-      background-color: transparent;
-
-      .circular-nav-toggle__icon {
-        color: #fff;
-      }
-    }
   }
 
   // Background panel
@@ -68,15 +57,6 @@ $circular-nav-item-text-color: #000;
     transition: width .2s $cubic-bezier,
       height .2s $cubic-bezier;
     margin-left: $circular-nav-bg-width/2 + 12; // 12 to avoid cropping the shadow
-
-    // Navigation open
-    &.circular-nav-open {
-      width: $circular-nav-bg-width;
-      height: $circular-nav-bg-height;
-      opacity: .9;
-      box-shadow: -5px 6px 0 6px rgba(255, 95, 109, 0.33);
-
-    }
   }
 
   // Navigation items
@@ -146,8 +126,28 @@ $circular-nav-item-text-color: #000;
         height: 35px;
       }
     }
+  }
 
-    &.circular-nav-open {
+  // Navigation open
+  &.circular-nav-open {
+    .circular-nav-toggle{
+      border: 2px solid #fff;
+      transform: rotate(135deg);
+      background-color: transparent;
+
+      .circular-nav-toggle__icon {
+        color: #fff;
+      }
+    }
+
+    .circular-nav-bg {
+      width: $circular-nav-bg-width;
+      height: $circular-nav-bg-height;
+      opacity: .9;
+      box-shadow: -5px 6px 0 6px rgba(255, 95, 109, 0.33);
+    }
+
+    .circular-nav-menu {
       .circular-nav-item {
         width: 40px;
         height: 40px;

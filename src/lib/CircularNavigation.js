@@ -66,11 +66,11 @@ const CircularNavigation = props => {
   }
   return (
     <nav className={`circular-nav-wrapper ${isNavOpen}`}>
-      <div className={`circular-nav-toggle ${isNavOpen}`} onClick={toggle}>
+      <div className="circular-nav-toggle" onClick={toggle}>
         <i className="material-icons circular-nav-toggle__icon">add</i>
       </div>
-      <div className={`circular-nav-bg ${isNavOpen}`}></div>
-      <ul className={`circular-nav-menu ${isNavOpen} ${menuClasses}`}>
+      <div className="circular-nav-bg"></div>
+      <ul className={`circular-nav-menu ${menuClasses}`}>
         {React.Children.map(props.children, (child, index) =>
           React.cloneElement(child, {
             index
