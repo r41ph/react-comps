@@ -1,6 +1,6 @@
 import React from "react";
-import { shallow, mount } from "enzyme"
-import CircularNavigation from "../lib/CircularNavigation";
+import { mount } from "enzyme"
+import CircularNavigation from "../lib/CircularNavigation/CircularNavigation";
 
 describe("CircularNavigation component", () => {
   it("nav gets CSS class 'circular-nav-open' on click", () => {
