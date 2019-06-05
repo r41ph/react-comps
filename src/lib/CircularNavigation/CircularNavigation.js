@@ -30,24 +30,15 @@ const propTypes = {
   showIcons: PropTypes.bool
 }
 
-const defaultProps = {
-  overlay: false,
-  overlayColor: "#000",
-  showText: false,
-  showIcons: true,
-  closeOnClickOverlay: true
-}
-
-
 const CircularNavigation = props => {
   const [navOpen, setNavOpen] = useState(false);
 
   const {
-    overlay,
-    overlayColor,
-    showText,
-    showIcons,
-    closeOnClickOverlay
+    overlay = false,
+    overlayColor = "#000",
+    showText = false,
+    showIcons = true,
+    closeOnClickOverlay = false
   } = props;
 
   const overlayStyle = {
@@ -104,6 +95,5 @@ CircularNavigation.item = ({ index, href, icon, children }) => (
 )
 
 CircularNavigation.propTypes = propTypes;
-CircularNavigation.defaultProps = defaultProps;
 
 export default CircularNavigation;
