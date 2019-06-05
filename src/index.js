@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from "react-dom";
-import { CircularNavigation } from "./lib";
+import CircularNavigation from "./lib/CircularNavigation/CircularNavigation";
 
 const App = () => (
   <CircularNavigation overlay={true}>
