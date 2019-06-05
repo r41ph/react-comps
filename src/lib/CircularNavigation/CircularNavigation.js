@@ -15,6 +15,11 @@ const propTypes = {
   overlayColor: PropTypes.string,
 
   /**
+   * Sets whether click on the overlay should close navigation
+   */
+  closeOnClickOverlay: PropTypes.bool,
+
+  /**
    * Controls if the text under the icons is visible
    */
   showText: PropTypes.bool,
@@ -29,7 +34,8 @@ const defaultProps = {
   overlay: false,
   overlayColor: "#000",
   showText: false,
-  showIcons: true
+  showIcons: true,
+  closeOnClickOverlay: true
 }
 
 
@@ -40,7 +46,8 @@ const CircularNavigation = props => {
     overlay,
     overlayColor,
     showText,
-    showIcons
+    showIcons,
+    closeOnClickOverlay
   } = props;
 
   const overlayStyle = {
@@ -81,7 +88,7 @@ const CircularNavigation = props => {
         <div
           style={navOpen ? overlayStyle : {}}
           className='circular-nav-overlay'
-          onClick={toggle}>
+          onClick={closeOnClickOverlay && toggle}>
         </div>}
     </nav>
   )
