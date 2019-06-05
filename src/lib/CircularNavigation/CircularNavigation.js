@@ -79,7 +79,7 @@ const CircularNavigation = props => {
         <div
           style={navOpen ? overlayStyle : {}}
           className='circular-nav-overlay'
-          onClick={closeOnClickOverlay && toggle}>
+          onClick={closeOnClickOverlay ? toggle : undefined} >
         </div>}
     </nav>
   )
