@@ -1,0 +1,9 @@
+.rc-button {
+  border: none;
+  padding: 20px 40px;
+
+  &:hover {
+    opacity: .7;
+    cursor: pointer;
+  }
+}
