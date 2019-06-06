@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import cx from 'classnames';
 import PropTypes from 'prop-types';
 import "./CircularNavigation.scss";
-
+import AddIcon from '@material-ui/icons/Add';
 const propTypes = {
   /**
    * Controls if an overlay is shown when the nav is open
@@ -65,7 +65,7 @@ const CircularNavigation = props => {
   return (
     <nav className={`circular-nav-wrapper ${isNavOpen}`}>
       <div className="circular-nav-toggle" onClick={toggle}>
-        <i className="material-icons circular-nav-toggle__icon">add</i>
+        <span className="circular-nav-toggle__icon"><AddIcon /></span>
       </div>
       <div className="circular-nav-bg"></div>
       <ul className={`circular-nav-menu ${menuClasses}`}>
@@ -88,7 +88,7 @@ const CircularNavigation = props => {
 CircularNavigation.item = ({ index, href, icon, children }) => (
   <li key={children} className={`circular-nav-item circular-nav-item-${index + 1}`}>
     <a href={href} className="circular-nav-item__link">
-      <i className="material-icons circular-nav-item__icon">{icon}</i>
+      <span className="circular-nav-item__icon">{icon}</span>
       <span className="circular-nav-item__text">{children}</span>
     </a>
   </li>
