@@ -34,7 +34,7 @@ const Button = props => {
     `rc-button-${size}`
   )
 
-  const TagType = props.href ? "a" : "button"
+  const TagType = props.href ? "a" : "button";
 
   const handleClick = () => {
     onClick();

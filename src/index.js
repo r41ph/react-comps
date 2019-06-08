@@ -8,7 +8,7 @@ import EmailIcon from '@material-ui/icons/Email';
 import {
   CircularNavigation,
   Button
-} from "./lib/";
+} from "./lib";
 
 
 const App = () => (
