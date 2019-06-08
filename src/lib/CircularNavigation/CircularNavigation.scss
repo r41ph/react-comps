@@ -1,14 +1,16 @@
+@import "../theme/theme.scss";
+
 $cubic-bezier: cubic-bezier(0, 1.16, 1, 1);
 $font-family: Verdana, Geneva, sans-serif;
 $circular-nav-toggle-color: #000;
 $circular-nav-toggle-weight: 30px;
 $circular-nav-toggle-height: 30px;
-$circular-nav-bg-gradient-bottom: #FFC371;
-$circular-nav-bg-gradient-top: #FF5F6D;
+$circular-nav-bg-gradient-bottom: $color-secondary;
+$circular-nav-bg-gradient-top: $color-primary;
 $circular-nav-bg-width: 450px;
 $circular-nav-bg-height: 450px;
 $circular-nav-item-bg: #fff;
-$circular-nav-icon-color: #FF5F6D;
+$circular-nav-icon-color: $color-primary;
 $circular-nav-item-text-color: #000;
 
 .circular-nav-wrapper {
