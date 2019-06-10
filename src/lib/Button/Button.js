@@ -1,7 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cx from 'classnames';
+import ButtonIcon from "./ButtonIcon";
 import "./Button.scss";
+
 
 const propTypes = {
   /**
@@ -19,22 +21,32 @@ const propTypes = {
    *
    * @type ('sm'|'md'|'lg'|'full-width')
    */
-  size: PropTypes.string
+  size: PropTypes.string,
+
+  /**
+   * Specifies the. Material icon to use
+   *
+   */
+  icon: PropTypes.string
 }
 
 const Button = props => {
   const {
     children,
     size = "md",
-    onClick = () => { }
+    onClick = () => { },
+    href,
+    icon = null
   } = props;
 
   const buttonCSS = cx(
     'rc-button',
-    `rc-button-${size}`
+    `rc-button-${size}`,
+    `${href ? "rc-button-anchor" : ""}`,
+    `${icon ? "rc-button-with-icon" : ""}`
   )
 
-  const TagType = props.href ? "a" : "button";
+  const TagType = href ? "a" : "button";
 
   const handleClick = () => {
     onClick();
@@ -46,6 +58,7 @@ const Button = props => {
       onClick={handleClick}
       className={`${buttonCSS}`}>
       {children}
+      {icon && <ButtonIcon icon={icon} />}
     </TagType >
   )
 }
