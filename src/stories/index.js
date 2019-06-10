@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { storiesOf } from '@storybook/react';
+import { withInfo } from '@storybook/addon-info';
 // import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
 // import { Welcome } from '@storybook/react/demo';
@@ -29,6 +30,7 @@ import LaunchIcon from "@material-ui/icons/Launch"
 //   ));
 
 storiesOf('CircularNavigation', module)
+  .addDecorator(withInfo)
   .add('With overlay', () => (
     <>
       <CircularNavigation overlay={true}>
@@ -62,6 +64,13 @@ storiesOf('CircularNavigation', module)
 
 
 storiesOf('Button', module)
+  .addDecorator(withInfo)
+  .add('Button types', () => (
+    <>
+      <Button size="md">Button</Button><br /><br /><br />
+      <Button size="md" href="/" target="_blank">Anchor</Button>
+    </>
+  ))
   .add('Button sizes', () => (
     <>
       <Button size="sm" href="/">Button Small</Button><br /><br />
