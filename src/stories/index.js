@@ -13,6 +13,9 @@ import BuildIcon from '@material-ui/icons/Build';
 import EmailIcon from '@material-ui/icons/Email';
 
 
+import LaunchIcon from "@material-ui/icons/Launch"
+
+
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
 
 // storiesOf('Button', module)
@@ -61,9 +64,25 @@ storiesOf('CircularNavigation', module)
 storiesOf('Button', module)
   .add('Button sizes', () => (
     <>
-      <Button size="sm" href="/">Button Small</Button>
-      <Button size="md">Button Medium</Button>
-      <Button size="lg">Button Large</Button>
-      <Button size="full-width">Button Full-width</Button>
+      <Button size="sm" href="/">Button Small</Button><br /><br />
+      <Button size="md">Button Medium</Button><br /><br />
+      <Button size="lg">Button Large</Button><br /><br />
+      <Button size="full-width">Button Full-width</Button><br /><br />
+    </>
+  ))
+  .add('Button with icon', () => (
+    <>
+      <Button size="sm" icon={LaunchIcon}>
+        Button Small
+      </Button><br /><br />
+      <Button size="md" icon={LaunchIcon}>
+        Button Medium
+      </Button><br /><br />
+      <Button size="lg" icon={LaunchIcon}>
+        Button Large
+      </Button><br /><br />
+      <Button size="full-width" icon={LaunchIcon}>
+        Button Full-width
+      </Button><br /><br />
     </>
   ));
