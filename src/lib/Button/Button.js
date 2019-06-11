@@ -7,6 +7,16 @@ import "./Button.scss";
 
 const propTypes = {
   /**
+   * Specifies button click event
+   */
+  onClick: PropTypes.func,
+
+  /**
+   * Set button text
+   */
+  children: PropTypes.string,
+
+  /**
    * Sets component as an anchor link and its reference
    */
   href: PropTypes.string,
@@ -19,7 +29,7 @@ const propTypes = {
   size: PropTypes.string,
 
   /**
-   * Specifies the. Material icon to use
+   * Specifies the Material UI icon to use
    *
    */
   icon: PropTypes.string
