@@ -7,11 +7,6 @@ import "./Button.scss";
 
 const propTypes = {
   /**
-   * Sets button status
-   */
-  active: PropTypes.string,
-
-  /**
    * Sets component as an anchor link and its reference
    */
   href: PropTypes.string,
