@@ -5,7 +5,7 @@ const propTypes = {
   /**
    * Specifies the icon Material UI to be used
    */
-  icon: PropTypes.string.isRequired
+  icon: PropTypes.object.isRequired
 }
 
 const ButtonIcon = props => {
