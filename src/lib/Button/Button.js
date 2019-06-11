@@ -39,11 +39,12 @@ const Button = props => {
     icon = null
   } = props;
 
-  const buttonClasses = cx(
+  const buttonC = cx(
     'rc-button',
     `rc-button-${size}`,
     `${href ? "rc-button-anchor" : ""}`,
-    `${icon ? "rc-button-with-icon" : ""}`
+    `${icon && children ? "rc-button-with-icon" : ""}`,
+    `${!children ? "rc-button-just-icon" : ""}`
   )
 
   const TagType = href ? "a" : "button";
@@ -56,7 +57,7 @@ const Button = props => {
     <TagType
       {...props}
       onClick={handleClick}
-      className={`${buttonClasses}`}>
+      className={`${buttonC}`}>
       {children}
       {icon && <ButtonIcon icon={icon} />}
     </TagType >
