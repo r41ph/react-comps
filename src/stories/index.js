@@ -65,21 +65,21 @@ storiesOf('CircularNavigation', module)
 
 storiesOf('Button', module)
   .addDecorator(withInfo)
-  .add('Button types', () => (
+  .add('Types', () => (
     <>
       <Button size="md">Button</Button><br /><br /><br />
       <Button size="md" href="/" target="_blank">Anchor</Button>
     </>
   ))
-  .add('Button sizes', () => (
+  .add('Sizes', () => (
     <>
-      <Button size="sm" href="/">Button Small</Button><br /><br />
+      <Button size="sm">Button Small</Button><br /><br />
       <Button size="md">Button Medium</Button><br /><br />
       <Button size="lg">Button Large</Button><br /><br />
       <Button size="full-width">Button Full-width</Button><br /><br />
     </>
   ))
-  .add('Button with icon', () => (
+  .add('With icon', () => (
     <>
       <Button size="sm" icon={LaunchIcon}>
         Button Small
@@ -93,5 +93,15 @@ storiesOf('Button', module)
       <Button size="full-width" icon={LaunchIcon}>
         Button Full-width
       </Button><br /><br />
+    </>
+  ))
+  .add('Just icon', () => (
+    <>
+      <Button size="sm" icon={LaunchIcon} />
+      <Button size="md" icon={AssignmentIcon} />
+      <Button size="lg" icon={EmailIcon} />
+      <Button size="sm" href={"/"} target="_blank" icon={LaunchIcon} />
+      <Button size="md" href={"/"} target="_blank" icon={AssignmentIcon} />
+      <Button size="lg" href={"/"} target="_blank" icon={EmailIcon} />
     </>
   ));
