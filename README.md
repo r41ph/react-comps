@@ -33,6 +33,14 @@ To start the development server (with entry point `src/index.js`), run
 $ npm start
 ```
 
+## Storybook
+
+To start the components explorer
+
+```
+$ npm run storybook
+```
+
 ## Publish to npm
 
 To transpile `src/lib` and create a build in the `dist` folder, run:
