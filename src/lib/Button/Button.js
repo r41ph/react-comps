@@ -17,6 +17,11 @@ const propTypes = {
   children: PropTypes.string,
 
   /**
+   * Set custom classes
+   */
+  className: PropTypes.string,
+
+  /**
    * Sets component as an anchor link and its reference
    */
   href: PropTypes.string,
@@ -41,7 +46,8 @@ const Button = props => {
     size = "md",
     onClick = () => { },
     href,
-    icon = null
+    icon = null,
+    className: customClasses = ""
   } = props;
 
   const buttonClasses = cx(
@@ -62,7 +68,7 @@ const Button = props => {
     <TagType
       {...props}
       onClick={handleClick}
-      className={`${buttonClasses}`}>
+      className={`${buttonClasses} ${customClasses}`}>
       {children}
       {icon && <ButtonIcon icon={icon} />}
     </TagType >

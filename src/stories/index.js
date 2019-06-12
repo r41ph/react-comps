@@ -33,7 +33,7 @@ storiesOf('CircularNavigation', module)
     info: {
       inline: true,
       source: true
-    
+
     },
   })
   .add('With overlay', () => (
@@ -65,7 +65,7 @@ storiesOf('Button', module)
   .addParameters({
     info: {
       inline: true,
-    
+
       source: true
     },
   })
@@ -85,7 +85,7 @@ storiesOf('Button', module)
   ))
   .add('With icon', () => (
     <div className="rc-story story-buttons-with-icon">
-      <Button size="sm" icon={LaunchIcon}>
+      <Button size="sm" icon={LaunchIcon} className="custom-class-here">
         Button Small
       </Button>
       <Button size="md" icon={LaunchIcon}>
