@@ -12,8 +12,6 @@ import AnnouncementIcon from '@material-ui/icons/Announcement';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import BuildIcon from '@material-ui/icons/Build';
 import EmailIcon from '@material-ui/icons/Email';
-
-
 import LaunchIcon from "@material-ui/icons/Launch"
 
 
@@ -31,8 +29,14 @@ import LaunchIcon from "@material-ui/icons/Launch"
 
 storiesOf('CircularNavigation', module)
   .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      inline: true,
+      source: false
+    },
+  })
   .add('With overlay', () => (
-    <>
+    <div>
       <CircularNavigation overlay={true}>
         <CircularNavigation.item href={'#'} icon={<HomeIcon />}>Home</CircularNavigation.item>
         <CircularNavigation.item href={'#'} icon={<AnnouncementIcon />}>About</CircularNavigation.item>
@@ -40,14 +44,10 @@ storiesOf('CircularNavigation', module)
         <CircularNavigation.item href={'#'} icon={<BuildIcon />}>Labs</CircularNavigation.item>
         <CircularNavigation.item href={'#'} icon={<EmailIcon />}>Contact</CircularNavigation.item>
       </CircularNavigation>
-
-      <p style={{ margin: 150 }}>
-        Ice cream candy tiramisu marshmallow chocolate gummi bears candy oat cake gummies. Pudding cupcake icing sweet roll apple pie icing. Icing tart sweet roll carrot cake macaroon lollipop icing. Tart brownie cotton candy chocolate bar chupa chups soufflé muffin. Caramels cookie chupa chups candy. Chocolate cake chocolate cake muffin sweet roll tootsie roll lemon drops lemon drops. Oat cake sweet sweet roll candy canes cake. Chocolate cake sweet cotton candy. Jelly jelly-o liquorice jelly-o dragée bonbon. Jujubes chocolate bar halvah topping chocolate cake jujubes. Toffee halvah carrot cake liquorice tiramisu cheesecake. Jelly-o muffin toffee jelly beans. Chocolate bar tootsie roll jelly-o jelly.
-    </p>
-    </>
+    </div>
   ))
   .add('No overlay', () => (
-    <>
+    <div>
       <CircularNavigation>
         <CircularNavigation.item href={'#'} icon={<HomeIcon />}>Home</CircularNavigation.item>
         <CircularNavigation.item href={'#'} icon={<AnnouncementIcon />}>About</CircularNavigation.item>
@@ -55,53 +55,61 @@ storiesOf('CircularNavigation', module)
         <CircularNavigation.item href={'#'} icon={<BuildIcon />}>Labs</CircularNavigation.item>
         <CircularNavigation.item href={'#'} icon={<EmailIcon />}>Contact</CircularNavigation.item>
       </CircularNavigation>
-
-      <p style={{ margin: 150 }}>
-        Ice cream candy tiramisu marshmallow chocolate gummi bears candy oat cake gummies. Pudding cupcake icing sweet roll apple pie icing. Icing tart sweet roll carrot cake macaroon lollipop icing. Tart brownie cotton candy chocolate bar chupa chups soufflé muffin. Caramels cookie chupa chups candy. Chocolate cake chocolate cake muffin sweet roll tootsie roll lemon drops lemon drops. Oat cake sweet sweet roll candy canes cake. Chocolate cake sweet cotton candy. Jelly jelly-o liquorice jelly-o dragée bonbon. Jujubes chocolate bar halvah topping chocolate cake jujubes. Toffee halvah carrot cake liquorice tiramisu cheesecake. Jelly-o muffin toffee jelly beans. Chocolate bar tootsie roll jelly-o jelly.
-    </p>
-    </>
+    </div>
   ));
 
 
 storiesOf('Button', module)
   .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      inline: true,
+      source: false
+    },
+  })
   .add('Types', () => (
-    <>
-      <Button size="md">Button</Button><br /><br /><br />
+    <div className="rc-story story-buttons-types">
+      <Button size="md">Button</Button>
       <Button size="md" href="/" target="_blank">Anchor</Button>
-    </>
+    </div>
   ))
   .add('Sizes', () => (
-    <>
-      <Button size="sm">Button Small</Button><br /><br />
-      <Button size="md">Button Medium</Button><br /><br />
-      <Button size="lg">Button Large</Button><br /><br />
-      <Button size="full-width">Button Full-width</Button><br /><br />
-    </>
+    <div className="rc-story story-buttons-sizes">
+      <Button size="sm">Button Small</Button>
+      <Button size="md">Button Medium</Button>
+      <Button size="lg">Button Large</Button>
+      <Button size="full-width">Button Full-width</Button>
+    </div>
   ))
   .add('With icon', () => (
-    <>
+    <div className="rc-story story-buttons-with-icon">
       <Button size="sm" icon={LaunchIcon}>
         Button Small
-      </Button><br /><br />
+      </Button>
       <Button size="md" icon={LaunchIcon}>
         Button Medium
-      </Button><br /><br />
+      </Button>
       <Button size="lg" icon={LaunchIcon}>
         Button Large
-      </Button><br /><br />
+      </Button>
       <Button size="full-width" icon={LaunchIcon}>
         Button Full-width
-      </Button><br /><br />
-    </>
+      </Button>
+    </div>
   ))
   .add('Just icon', () => (
-    <>
-      <Button size="sm" icon={LaunchIcon} />
-      <Button size="md" icon={AssignmentIcon} />
-      <Button size="lg" icon={EmailIcon} />
-      <Button size="sm" href={"/"} target="_blank" icon={LaunchIcon} />
-      <Button size="md" href={"/"} target="_blank" icon={AssignmentIcon} />
-      <Button size="lg" href={"/"} target="_blank" icon={EmailIcon} />
-    </>
+    <div className="rc-story story-buttons-just-icon">
+      <h3>Button</h3>
+      <div className="buttons">
+        <Button size="sm" icon={LaunchIcon} />
+        <Button size="md" icon={AssignmentIcon} />
+        <Button size="lg" icon={EmailIcon} />
+      </div>
+      <h3>Anchor link</h3>
+      <div className="anchors">
+        <Button size="sm" href={"/"} target="_blank" icon={LaunchIcon} />
+        <Button size="md" href={"/"} target="_blank" icon={AssignmentIcon} />
+        <Button size="lg" href={"/"} target="_blank" icon={EmailIcon} />
+      </div>
+    </div>
   ));

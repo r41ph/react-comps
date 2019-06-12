@@ -1,2 +1,40 @@
 $color-primary: #FF5F6D;
 $color-secondary: #FFC371;
+
+.rc-story {
+  border: 1px solid rgb(238, 238, 238);
+  padding: 20px 40px 40px;
+  border-radius: 2px;
+  background-color: rgb(255, 255, 255);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.story-buttons-just-icon {
+  .buttons {
+    button {
+      margin: 20px;
+      display: inline-block;
+    }
+  }
+  .anchors {
+    a {
+      margin: 20px;
+    }
+  }
+}
+
+.story-buttons-with-icon,
+.story-buttons-sizes {
+  button {
+    margin: 20px;
+    color: #fff;
+  }
+}
+
+.story-buttons-types {
+  button {
+    margin: 20px;
+    color: #fff;
+  }
+}
