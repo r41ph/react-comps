@@ -32,7 +32,8 @@ storiesOf('CircularNavigation', module)
   .addParameters({
     info: {
       inline: true,
-      source: false
+      source: true
+    
     },
   })
   .add('With overlay', () => (
@@ -64,7 +65,8 @@ storiesOf('Button', module)
   .addParameters({
     info: {
       inline: true,
-      source: false
+    
+      source: true
     },
   })
   .add('Types', () => (
