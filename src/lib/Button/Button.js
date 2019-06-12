@@ -44,7 +44,7 @@ const Button = props => {
     icon = null
   } = props;
 
-  const buttonC = cx(
+  const buttonClasses = cx(
     'rc-button',
     `rc-button-${size}`,
     `${href ? "rc-button-anchor" : ""}`,
@@ -62,7 +62,7 @@ const Button = props => {
     <TagType
       {...props}
       onClick={handleClick}
-      className={`${buttonC}`}>
+      className={`${buttonClasses}`}>
       {children}
       {icon && <ButtonIcon icon={icon} />}
     </TagType >
