@@ -13,6 +13,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import BuildIcon from '@material-ui/icons/Build';
 import EmailIcon from '@material-ui/icons/Email';
 import LaunchIcon from "@material-ui/icons/Launch"
+import Dropdown from '../lib/Dropdown/Dropdown';
 
 
 // storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
@@ -26,6 +27,22 @@ import LaunchIcon from "@material-ui/icons/Launch"
 //       </span>
 //     </Button>
 //   ));
+const dropdownItems = [
+  { value: "one" },
+  { value: "two" }
+]
+
+storiesOf('Dropdown', module)
+  .addDecorator(withInfo)
+  .addParameters({
+    info: {
+      inline: true,
+      source: true
+
+    },
+  })
+  .add('Custom dropdown', () => <Dropdown items={dropdownItems} />)
+
 
 storiesOf('CircularNavigation', module)
   .addDecorator(withInfo)

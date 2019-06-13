@@ -1,0 +1,30 @@
+// /* Custom select dropdown */
+.rc-dropdown {
+    // background: #e6e6e6 url("select-arrow.jpg") no-repeat right top !important;
+    border: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 35px;
+
+    select {
+        padding: 10px 8px;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+
+        &:focus {
+            border: 0;
+            box-shadow: none !important;
+        }
+
+        option {
+            width: 100%;
+        }
+    }
+}
