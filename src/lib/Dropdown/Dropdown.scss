@@ -8,7 +8,6 @@
 
     select {
         padding: 10px 8px;
-        width: 100%;
         border: none;
         box-shadow: none;
         background: transparent;
@@ -16,7 +15,6 @@
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-
 
         &:focus {
             border: 0;

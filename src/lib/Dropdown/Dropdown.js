@@ -10,14 +10,18 @@ const propTypes = {
    */
   onClick: PropTypes.func,
 
-  items: PropTypes.array
+  items: PropTypes.array,
+  selectWidth: PropTypes.string,
+  bgColor: PropTypes.string
 }
 
 const Dropdown = props => {
   const {
     onClick = () => { },
     className: customClasses = "",
-    items
+    items,
+    selectWidth,
+    bgColor
   } = props;
 
   const dropdownClasses = cx(
@@ -30,7 +34,7 @@ const Dropdown = props => {
 
   return (
     <div class={`${dropdownClasses} ${customClasses}`}>
-      <select>
+      <select style={{ width: selectWidth, backgroundColor: bgColor }}>
         {items.map(item => (
           <option
             key={item.value}

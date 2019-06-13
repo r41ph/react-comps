@@ -41,7 +41,12 @@ storiesOf('Dropdown', module)
 
     },
   })
-  .add('Custom dropdown', () => <Dropdown items={dropdownItems} />)
+  .add('Custom dropdown', () => (
+    <Dropdown
+      items={dropdownItems}
+      selectWidth="400px"
+      bgColor="#e6e6e6" />
+  ))
 
 
 storiesOf('CircularNavigation', module)
