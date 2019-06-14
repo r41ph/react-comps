@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import cx from 'classnames';
-import "./Dropdown.scss";
+import "./SelectList.scss";
 
 
 const propTypes = {
@@ -15,7 +15,7 @@ const propTypes = {
   bgColor: PropTypes.string
 }
 
-const Dropdown = props => {
+const SelectList = props => {
   const {
     onClick = () => { },
     className: customClasses = "",
@@ -24,8 +24,8 @@ const Dropdown = props => {
     bgColor
   } = props;
 
-  const dropdownClasses = cx(
-    'rc-dropdown'
+  const selectListClasses = cx(
+    'rc-select-list'
   )
 
   const handleClick = () => {
@@ -33,7 +33,7 @@ const Dropdown = props => {
   }
 
   return (
-    <div class={`${dropdownClasses} ${customClasses}`}>
+    <div class={`${selectListClasses} ${customClasses}`}>
       <select style={{ width: selectWidth, backgroundColor: bgColor }}>
         {items.map(item => (
           <option
@@ -47,6 +47,6 @@ const Dropdown = props => {
   )
 }
 
-Dropdown.propTypes = propTypes;
+SelectList.propTypes = propTypes;
 
-export default Dropdown;
+export default SelectList;

@@ -1,14 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
-import Dropdown from '../lib/Dropdown/Dropdown';
+import SelectList from '../lib/SelectList/SelectList';
 
-const dropdownItems = [
+const selectListItems = [
   { value: "one" },
   { value: "two" }
 ]
 
-storiesOf('Dropdown', module)
+storiesOf('SelectList', module)
   .addDecorator(withInfo)
   .addParameters({
     info: {
@@ -17,9 +17,9 @@ storiesOf('Dropdown', module)
 
     },
   })
-  .add('Custom dropdown', () => (
-    <Dropdown
-      items={dropdownItems}
+  .add('Custom select list', () => (
+    <SelectList
+      items={selectListItems}
       selectWidth="400px"
       bgColor="#e6e6e6" />
   ));
