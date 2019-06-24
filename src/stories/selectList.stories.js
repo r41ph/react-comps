@@ -27,5 +27,6 @@ storiesOf('SelectList', module)
       selectWidth="400px"
       bgColor="#e6e6e6"
       icon={KeyboardArrowDown}
-      placeholder="Pick an option" />
+      placeholder="Pick an option"
+      label="Select an option from the list" />
   ));

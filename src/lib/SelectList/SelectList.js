@@ -31,6 +31,11 @@ const propTypes = {
   placeholder: PropTypes.string,
 
   /**
+   * Specifies the dropdown label text
+   */
+  label: PropTypes.string,
+
+  /**
    * Specifies the dropdown Material UI icon
    */
   icon: PropTypes.object
@@ -51,7 +56,8 @@ const SelectList = props => {
     selectWidth,
     bgColor,
     icon: Icon,
-    placeholder
+    placeholder,
+    label = ""
   } = props;
 
   const selectListClasses = cx(
@@ -76,6 +82,7 @@ const SelectList = props => {
     <div
       className={`${selectListClasses} ${customClasses}`}
       style={{ width: selectWidth }}>
+      {label ? (<label className="rc-select__label">{label}</label>) : null}
       <div
         className="rc-select-list"
         style={{ backgroundColor: bgColor }}

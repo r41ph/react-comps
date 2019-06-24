@@ -1,55 +1,62 @@
 // /* Custom select dropdown */
 .rc-select {
-    .rc-select-list {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      
+  .rc-select__label {
+    display: inline-block;
+    padding-bottom: 5px;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .rc-select-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border: 0;
+    overflow: hidden;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+
+  .rc-select-list__options {
+    display: none;
+    box-sizing: border-box;
+    border: none;
+    box-shadow: none;
+    background: #fff;
+    opacity: .6;
+    background-image: none;
+    appearance: none;
+    width: 100%;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    &:focus {
       border: 0;
-      overflow: hidden;
-      width: 100%;
-      padding: 10px 20px;
-      box-sizing: border-box;
+      box-shadow: none !important;
     }
 
+    .rc-select-list__option {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 20px;
+
+      &:hover {
+        cursor: pointer;
+        opacity: .8;
+      }
+    }
+  }
+
+  &.rc-select-list--open {
+    .rc-select-list__icon {
+      transform: rotate(180deg);
+    }
     .rc-select-list__options {
-      display: none;
-      box-sizing: border-box;
-      border: none;
-      box-shadow: none;
-      background: #fff;
-      opacity: .6;
-      background-image: none;
-      appearance: none;
-      width: 100%;
-      position: relative;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      &:focus {
-        border: 0;
-        box-shadow: none !important;
-      }
-
-      .rc-select-list__option {
-        box-sizing: border-box;
-        width: 100%;
-        padding: 20px;
-
-        &:hover {
-          cursor: pointer;
-          opacity: .8;
-        }
-      }
+      display: block;
     }
-
-    &.rc-select-list--open {
-      .rc-select-list__icon {
-        transform: rotate(180deg);
-      }
-      .rc-select-list__options {
-        display: block;
-      }
-    }
+  }
 }
