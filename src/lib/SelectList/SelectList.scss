@@ -1,28 +1,55 @@
 // /* Custom select dropdown */
-.rc-select-list {
-    // background: #e6e6e6 url("select-arrow.jpg") no-repeat right top !important;
-    border: 0;
-    overflow: hidden;
-    width: 100%;
-    height: 35px;
+.rc-select {
+    .rc-select-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      border: 0;
+      overflow: hidden;
+      width: 100%;
+      padding: 10px 20px;
+      box-sizing: border-box;
+    }
 
-    select {
-        padding: 10px 8px;
-        border: none;
-        box-shadow: none;
-        background: transparent;
-        background-image: none;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
+    .rc-select-list__options {
+      display: none;
+      box-sizing: border-box;
+      border: none;
+      box-shadow: none;
+      background: #fff;
+      opacity: .6;
+      background-image: none;
+      appearance: none;
+      width: 100%;
+      position: relative;
+      list-style: none;
+      margin: 0;
+      padding: 0;
 
-        &:focus {
-            border: 0;
-            box-shadow: none !important;
+      &:focus {
+        border: 0;
+        box-shadow: none !important;
+      }
+
+      .rc-select-list__option {
+        box-sizing: border-box;
+        width: 100%;
+        padding: 20px;
+
+        &:hover {
+          cursor: pointer;
+          opacity: .8;
         }
+      }
+    }
 
-        option {
-            width: 100%;
-        }
+    &.rc-select-list--open {
+      .rc-select-list__icon {
+        transform: rotate(180deg);
+      }
+      .rc-select-list__options {
+        display: block;
+      }
     }
 }

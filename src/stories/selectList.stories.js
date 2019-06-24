@@ -3,9 +3,13 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import SelectList from '../lib/SelectList/SelectList';
 
+import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
+
 const selectListItems = [
-  { value: "one" },
-  { value: "two" }
+  { value: "Whoop" },
+  { value: "Wow" },
+  { value: "Yeap" },
+  { value: "Yay!" }
 ]
 
 storiesOf('SelectList', module)
@@ -19,7 +23,9 @@ storiesOf('SelectList', module)
   })
   .add('Custom select list', () => (
     <SelectList
-      items={selectListItems}
+      options={selectListItems}
       selectWidth="400px"
-      bgColor="#e6e6e6" />
+      bgColor="#e6e6e6"
+      icon={KeyboardArrowDown}
+      placeholder="Pick an option" />
   ));
