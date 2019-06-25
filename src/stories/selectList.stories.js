@@ -6,10 +6,13 @@ import SelectList from '../lib/SelectList/SelectList';
 import KeyboardArrowDown from '@material-ui/icons/KeyboardArrowDown';
 
 const selectListItems = [
+  { value: "Yay!" },
+  { value: "Hooray" },
   { value: "Whoop" },
   { value: "Wow" },
   { value: "Yeap" },
-  { value: "Yay!" }
+  { value: "Woo-hoo" },
+  { value: "Aha!" }
 ]
 
 storiesOf('SelectList', module)
@@ -38,5 +41,6 @@ storiesOf('SelectList', module)
       icon={KeyboardArrowDown}
       placeholder="Pick options"
       label="Select options from the list"
-      isMultiSelect />
+      isMultiSelect
+      badgeBgColor="#FFCC00" />
   ));
