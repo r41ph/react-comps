@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import cx from 'classnames';
 import "./SelectList.scss";
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const propTypes = {
@@ -38,17 +41,17 @@ const propTypes = {
   /**
    * Specifies the dropdown Material UI icon
    */
-  icon: PropTypes.object
+  icon: PropTypes.object,
+
+  /**
+   * Specifies wether the dropdown allows to select multiple options
+   */
+  isMultiSelect: PropTypes.bool
 }
 
 const SelectList = props => {
   const [isOpen, setOpen] = useState(false);
-  const [optionSelected, setOptionSelected] = useState([]);
-
-  useEffect(function () {
-    console.log("optionSelected", optionSelected)
-  }, [optionSelected]);
-
+  const [optionsSelected, setOptionsSelected] = useState([]);
   const {
     onClick = () => { },
     className: customClasses = "",
@@ -57,7 +60,8 @@ const SelectList = props => {
     bgColor,
     icon: Icon,
     placeholder,
-    label = ""
+    label = "",
+    isMultiSelect
   } = props;
 
   const selectListClasses = cx(
@@ -71,11 +75,58 @@ const SelectList = props => {
   }
 
   const handleChange = event => {
-    console.log("event.target.value", event.target.textContent)
-    setOptionSelected([event.target.textContent]);
-    // multiple??
-    // setOptionSelected([...optionSelected, event.target.textContent]);
-    setOpen(!isOpen);
+    const value = event.target.textContent;
+    if (isMultiSelect) {
+      if (optionsSelected.includes(value)) {
+        const updatedOptions = [...optionsSelected];
+        const valueIndex = optionsSelected.indexOf(value);
+        updatedOptions.splice(valueIndex, 1);
+        setOptionsSelected(updatedOptions)
+      } else {
+        setOptionsSelected([...optionsSelected, value])
+      }
+    } else {
+      setOptionsSelected([value]);
+      setOpen(!isOpen);
+    }
+  }
+
+  const renderSelected = () => {
+    if (isMultiSelect) {
+      return optionsSelected.map(option => <div>{option} <CloseIcon /></div>)
+    } else {
+      return optionsSelected[0]
+    }
+  }
+
+  const renderOptions = () => {
+    if (isMultiSelect) {
+      return options.map(item => (
+        <li
+          style={{ borderBottom: `1px solid ${bgColor}` }}
+          className="rc-select-list__option"
+          key={item.value}
+          value={item.value}
+          onClick={handleChange}>
+          {optionsSelected.includes(item.value)
+            ? <CheckBoxIcon />
+            : <CheckBoxOutlineBlankIcon />
+          }
+          {item.value}
+        </li>)
+      )
+    } else {
+      return options.map(item => (
+        <li
+          style={{ borderBottom: `1px solid ${bgColor}` }}
+          className="rc-select-list__option"
+          key={item.value}
+          value={item.value}
+          onClick={handleChange}>
+          {item.value}
+        </li>)
+      )
+    }
   }
 
   return (
@@ -87,22 +138,15 @@ const SelectList = props => {
         className="rc-select-list"
         style={{ backgroundColor: bgColor }}
         onClick={handleClick}>
-        {optionSelected.length > 0 ? optionSelected[0] : placeholder}
+        {optionsSelected.length > 0
+          ? renderSelected()
+          : placeholder}
         <div className="rc-select-list__icon">{<Icon />}</div>
       </div>
       <ul
         className="rc-select-list__options"
         style={{ border: `1px solid ${bgColor}` }}>
-        {options.map(item => (
-          <li
-            style={{ borderBottom: `1px solid ${bgColor}` }}
-            className="rc-select-list__option"
-            key={item.value}
-            value={item.value}
-            onClick={handleChange}>
-            {item.value}
-          </li>)
-        )}
+        {renderOptions()}
       </ul>
     </div>
   )
