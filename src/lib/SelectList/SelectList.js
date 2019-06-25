@@ -69,12 +69,12 @@ const SelectList = props => {
     `${isOpen ? "rc-select-list--open" : ""}`
   )
 
-  const handleClick = () => {
+  const onToggleSelect = () => {
     onClick();
     setOpen(!isOpen);
   }
 
-  const handleChange = event => {
+  const onHandleSelectOption = event => {
     const value = event.target.textContent;
     if (isMultiSelect) {
       if (optionsSelected.includes(value)) {
@@ -88,7 +88,8 @@ const SelectList = props => {
     }
   }
 
-  const deselectOption = option => {
+  const deselectOption = (event, option) => {
+    event.stopPropagation();
     const updatedOptions = [...optionsSelected];
     const optionIndex = optionsSelected.indexOf(option);
     updatedOptions.splice(optionIndex, 1);
@@ -98,7 +99,7 @@ const SelectList = props => {
   const renderSelected = () => {
     if (isMultiSelect) {
       return optionsSelected.map(option => (
-        <div onClick={() => deselectOption(option)}>
+        <div onClick={event => deselectOption(event, option)}>
           {option} <DeleteIcon />
         </div>)
       )
@@ -115,7 +116,7 @@ const SelectList = props => {
           className="rc-select-list__option"
           key={item.value}
           value={item.value}
-          onClick={handleChange}>
+          onClick={onHandleSelectOption}>
           {optionsSelected.includes(item.value)
             ? <CheckBoxIcon />
             : <CheckBoxOutlineBlankIcon />
@@ -130,7 +131,7 @@ const SelectList = props => {
           className="rc-select-list__option"
           key={item.value}
           value={item.value}
-          onClick={handleChange}>
+          onClick={onHandleSelectOption}>
           {item.value}
         </li>)
       )
@@ -145,7 +146,7 @@ const SelectList = props => {
       <div
         className="rc-select-list"
         style={{ backgroundColor: bgColor }}
-        onClick={handleClick}>
+        onClick={onToggleSelect}>
         {optionsSelected.length > 0
           ? renderSelected()
           : placeholder}
