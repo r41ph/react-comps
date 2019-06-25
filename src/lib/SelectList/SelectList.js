@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from 'classnames';
 import "./SelectList.scss";
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import DeleteIcon from '@material-ui/icons/Close';
 
 
 const propTypes = {
@@ -31,19 +34,30 @@ const propTypes = {
   placeholder: PropTypes.string,
 
   /**
+   * Specifies the dropdown label text
+   */
+  label: PropTypes.string,
+
+  /**
    * Specifies the dropdown Material UI icon
    */
-  icon: PropTypes.object
+  icon: PropTypes.object,
+
+  /**
+   * Specifies wether the dropdown allows to select multiple options
+   */
+  isMultiSelect: PropTypes.bool,
+
+  /**
+   * Specifies the background color of the badge for the selected
+   * options when isMultiSelect = true
+   */
+  badgeBgColor: PropTypes.string
 }
 
 const SelectList = props => {
   const [isOpen, setOpen] = useState(false);
-  const [optionSelected, setOptionSelected] = useState([]);
-
-  useEffect(function () {
-    console.log("optionSelected", optionSelected)
-  }, [optionSelected]);
-
+  const [optionsSelected, setOptionsSelected] = useState([]);
   const {
     onClick = () => { },
     className: customClasses = "",
@@ -51,7 +65,10 @@ const SelectList = props => {
     selectWidth,
     bgColor,
     icon: Icon,
-    placeholder
+    placeholder,
+    label = "",
+    isMultiSelect,
+    badgeBgColor
   } = props;
 
   const selectListClasses = cx(
@@ -59,43 +76,101 @@ const SelectList = props => {
     `${isOpen ? "rc-select-list--open" : ""}`
   )
 
-  const handleClick = () => {
+  const onToggleSelect = () => {
     onClick();
     setOpen(!isOpen);
   }
 
-  const handleChange = event => {
-    console.log("event.target.value", event.target.textContent)
-    setOptionSelected([event.target.textContent]);
-    // multiple??
-    // setOptionSelected([...optionSelected, event.target.textContent]);
-    setOpen(!isOpen);
+  const onHandleSelectOption = event => {
+    const { value } = event.currentTarget.dataset;
+    if (isMultiSelect) {
+      if (optionsSelected.includes(value)) {
+        const updatedOptions = [...optionsSelected];
+        const optionIndex = optionsSelected.indexOf(value);
+        updatedOptions.splice(optionIndex, 1);
+        setOptionsSelected(updatedOptions)
+      } else {
+        setOptionsSelected([...optionsSelected, value])
+      }
+    } else {
+      setOptionsSelected([value]);
+      setOpen(!isOpen);
+    }
+  }
+
+  const deselectOption = (event, option) => {
+    event.stopPropagation();
+    const updatedOptions = [...optionsSelected];
+    const optionIndex = optionsSelected.indexOf(option);
+    updatedOptions.splice(optionIndex, 1);
+    setOptionsSelected(updatedOptions)
+  }
+
+  const renderSelected = () => {
+    if (isMultiSelect) {
+      return optionsSelected.map(option => (
+        <div
+          key={option}
+          className="rc-select-list__selected-badge"
+          onClick={event => deselectOption(event, option)}
+          title="Remove"
+          style={{ backgroundColor: badgeBgColor }}>
+          {option} <DeleteIcon />
+        </div>)
+      )
+    } else {
+      return optionsSelected[0]
+    }
+  }
+
+  const renderOptions = () => {
+    if (isMultiSelect) {
+      return options.map(item => (
+        <li
+          style={{ borderBottom: `1px solid ${bgColor}` }}
+          className="rc-select-list__option"
+          key={item.value}
+          data-value={item.value}
+          onClick={onHandleSelectOption}>
+          {optionsSelected.includes(item.value)
+            ? <CheckBoxIcon />
+            : <CheckBoxOutlineBlankIcon />
+          }
+          {item.value}
+        </li>)
+      )
+    } else {
+      return options.map(item => (
+        <li
+          style={{ borderBottom: `1px solid ${bgColor}` }}
+          className="rc-select-list__option"
+          key={item.value}
+          data-value={item.value}
+          onClick={onHandleSelectOption}>
+          {item.value}
+        </li>)
+      )
+    }
   }
 
   return (
     <div
       className={`${selectListClasses} ${customClasses}`}
       style={{ width: selectWidth }}>
+      {label ? (<label className="rc-select__label">{label}</label>) : null}
       <div
         className="rc-select-list"
         style={{ backgroundColor: bgColor }}
-        onClick={handleClick}>
-        {optionSelected.length > 0 ? optionSelected[0] : placeholder}
+        onClick={onToggleSelect}>
+        {optionsSelected.length > 0
+          ? (<div className="rc-select-list__selected">{renderSelected()}</div>)
+          : placeholder}
         <div className="rc-select-list__icon">{<Icon />}</div>
       </div>
       <ul
         className="rc-select-list__options"
         style={{ border: `1px solid ${bgColor}` }}>
-        {options.map(item => (
-          <li
-            style={{ borderBottom: `1px solid ${bgColor}` }}
-            className="rc-select-list__option"
-            key={item.value}
-            value={item.value}
-            onClick={handleChange}>
-            {item.value}
-          </li>)
-        )}
+        {renderOptions()}
       </ul>
     </div>
   )
