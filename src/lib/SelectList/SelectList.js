@@ -4,8 +4,7 @@ import cx from 'classnames';
 import "./SelectList.scss";
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import DeleteIcon from '@material-ui/icons/Close';
-
+import Badge from "./Badge";
 
 const propTypes = {
   /**
@@ -108,15 +107,12 @@ const SelectList = props => {
 
   const renderSelected = () => {
     if (isMultiSelect) {
-      return optionsSelected.map(option => (
-        <div
+      return optionsSelected.map(option =>
+        <Badge
           key={option}
-          className="rc-select-list__selected-badge"
-          onClick={event => deselectOption(event, option)}
-          title="Remove"
-          style={{ backgroundColor: badgeBgColor }}>
-          {option} <DeleteIcon />
-        </div>)
+          option={option}
+          deselectOption={deselectOption}
+          badgeBgColor={badgeBgColor} />
       )
     } else {
       return optionsSelected[0]
