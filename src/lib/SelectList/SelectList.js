@@ -75,10 +75,13 @@ const SelectList = props => {
   }
 
   const onHandleSelectOption = event => {
-    const value = event.target.textContent;
+    const { value } = event.currentTarget.dataset;
     if (isMultiSelect) {
       if (optionsSelected.includes(value)) {
-        deselectOption(value);
+        const updatedOptions = [...optionsSelected];
+        const optionIndex = optionsSelected.indexOf(value);
+        updatedOptions.splice(optionIndex, 1);
+        setOptionsSelected(updatedOptions)
       } else {
         setOptionsSelected([...optionsSelected, value])
       }
@@ -115,7 +118,7 @@ const SelectList = props => {
           style={{ borderBottom: `1px solid ${bgColor}` }}
           className="rc-select-list__option"
           key={item.value}
-          value={item.value}
+          data-value={item.value}
           onClick={onHandleSelectOption}>
           {optionsSelected.includes(item.value)
             ? <CheckBoxIcon />
@@ -130,7 +133,7 @@ const SelectList = props => {
           style={{ borderBottom: `1px solid ${bgColor}` }}
           className="rc-select-list__option"
           key={item.value}
-          value={item.value}
+          data-value={item.value}
           onClick={onHandleSelectOption}>
           {item.value}
         </li>)
