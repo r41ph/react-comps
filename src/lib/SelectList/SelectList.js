@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import cx from 'classnames';
 import "./SelectList.scss";
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import CloseIcon from '@material-ui/icons/Close';
+import DeleteIcon from '@material-ui/icons/Close';
 
 
 const propTypes = {
@@ -78,10 +78,7 @@ const SelectList = props => {
     const value = event.target.textContent;
     if (isMultiSelect) {
       if (optionsSelected.includes(value)) {
-        const updatedOptions = [...optionsSelected];
-        const valueIndex = optionsSelected.indexOf(value);
-        updatedOptions.splice(valueIndex, 1);
-        setOptionsSelected(updatedOptions)
+        deselectOption(value);
       } else {
         setOptionsSelected([...optionsSelected, value])
       }
@@ -91,9 +88,20 @@ const SelectList = props => {
     }
   }
 
+  const deselectOption = option => {
+    const updatedOptions = [...optionsSelected];
+    const optionIndex = optionsSelected.indexOf(option);
+    updatedOptions.splice(optionIndex, 1);
+    setOptionsSelected(updatedOptions)
+  }
+
   const renderSelected = () => {
     if (isMultiSelect) {
-      return optionsSelected.map(option => <div>{option} <CloseIcon /></div>)
+      return optionsSelected.map(option => (
+        <div onClick={() => deselectOption(option)}>
+          {option} <DeleteIcon />
+        </div>)
+      )
     } else {
       return optionsSelected[0]
     }
