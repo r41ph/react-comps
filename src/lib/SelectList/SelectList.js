@@ -46,7 +46,13 @@ const propTypes = {
   /**
    * Specifies wether the dropdown allows to select multiple options
    */
-  isMultiSelect: PropTypes.bool
+  isMultiSelect: PropTypes.bool,
+
+  /**
+   * Specifies the background color of the badge for the selected
+   * options when isMultiSelect = true
+   */
+  badgeBgColor: PropTypes.string
 }
 
 const SelectList = props => {
@@ -61,7 +67,8 @@ const SelectList = props => {
     icon: Icon,
     placeholder,
     label = "",
-    isMultiSelect
+    isMultiSelect,
+    badgeBgColor
   } = props;
 
   const selectListClasses = cx(
@@ -102,7 +109,12 @@ const SelectList = props => {
   const renderSelected = () => {
     if (isMultiSelect) {
       return optionsSelected.map(option => (
-        <div onClick={event => deselectOption(event, option)}>
+        <div
+          key={option}
+          className="rc-select-list__selected-badge"
+          onClick={event => deselectOption(event, option)}
+          title="Remove"
+          style={{ backgroundColor: badgeBgColor }}>
           {option} <DeleteIcon />
         </div>)
       )
@@ -151,7 +163,7 @@ const SelectList = props => {
         style={{ backgroundColor: bgColor }}
         onClick={onToggleSelect}>
         {optionsSelected.length > 0
-          ? renderSelected()
+          ? (<div className="rc-select-list__selected">{renderSelected()}</div>)
           : placeholder}
         <div className="rc-select-list__icon">{<Icon />}</div>
       </div>

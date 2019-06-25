@@ -17,6 +17,29 @@
     width: 100%;
     padding: 10px 20px;
     box-sizing: border-box;
+
+    .rc-select-list__selected {
+      display: flex;
+      flex-wrap: wrap;
+
+      .rc-select-list__selected-badge {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 5px 5px 5px 10px;
+        margin: 3px;
+
+        &:hover {
+          cursor: pointer;
+          opacity: .8;
+        }
+
+        svg {
+          font-size: 1rem;
+          margin-left: 5px;
+        }
+      }
+    }
   }
 
   .rc-select-list__options {
@@ -40,13 +63,20 @@
     }
 
     .rc-select-list__option {
+      display: flex;
+      align-items: center;
       box-sizing: border-box;
       width: 100%;
-      padding: 20px;
+      padding: 12px 20px;
 
       &:hover {
         cursor: pointer;
         opacity: .8;
+      }
+
+      svg {
+        margin-right: 5px;
+        font-size: 1.2rem;
       }
     }
   }
