@@ -120,33 +120,20 @@ const SelectList = props => {
   }
 
   const renderOptions = () => {
-    if (isMultiSelect) {
-      return options.map(item => (
-        <li
-          style={{ borderBottom: `1px solid ${bgColor}` }}
-          className="rc-select-list__option"
-          key={item.value}
-          data-value={item.value}
-          onClick={onHandleSelectOption}>
-          {optionsSelected.includes(item.value)
-            ? <CheckBoxIcon />
-            : <CheckBoxOutlineBlankIcon />
-          }
-          {item.value}
-        </li>)
-      )
-    } else {
-      return options.map(item => (
-        <li
-          style={{ borderBottom: `1px solid ${bgColor}` }}
-          className="rc-select-list__option"
-          key={item.value}
-          data-value={item.value}
-          onClick={onHandleSelectOption}>
-          {item.value}
-        </li>)
-      )
-    }
+    return options.map(item => (
+      <li
+        style={{ borderBottom: `1px solid ${bgColor}` }}
+        className="rc-select-list__option"
+        key={item.value}
+        data-value={item.value}
+        onClick={onHandleSelectOption}>
+        {isMultiSelect
+          ? optionsSelected.includes(item.value) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />
+          : null
+        }
+        {item.value}
+      </li>)
+    )
   }
 
   return (
