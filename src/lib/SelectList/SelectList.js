@@ -8,9 +8,11 @@ import Badge from "./Badge";
 
 const propTypes = {
   /**
-   * Specifies button click event
+   * This function gets triggered every time the 
+   * selected options change and lift the selected
+   * options to the parent component.
    */
-  onClick: PropTypes.func,
+  onChangeSelected: PropTypes.func,
 
   /**
    * List of select options
@@ -55,6 +57,19 @@ const propTypes = {
 }
 
 const SelectList = props => {
+  const {
+    onChangeSelected = () => { },
+    className: customClasses = "",
+    options,
+    selectWidth,
+    bgColor,
+    icon: Icon,
+    placeholder,
+    label = "",
+    isMultiSelect,
+    badgeBgColor
+  } = props;
+
   const [isOpen, setOpen] = useState(false);
   const [optionsSelected, setOptionsSelected] = useState([]);
   const selectListContainer = useRef();
@@ -71,19 +86,9 @@ const SelectList = props => {
     };
   }, [isOpen]);
 
-
-  const {
-    onClick = () => { },
-    className: customClasses = "",
-    options,
-    selectWidth,
-    bgColor,
-    icon: Icon,
-    placeholder,
-    label = "",
-    isMultiSelect,
-    badgeBgColor
-  } = props;
+  useEffect(() => {
+    onChangeSelected(optionsSelected)
+  }, [onChangeSelected, optionsSelected]);
 
   const selectListClasses = cx(
     'rc-select',
@@ -91,7 +96,6 @@ const SelectList = props => {
   )
 
   const onToggleSelect = () => {
-    onClick();
     setOpen(!isOpen);
   }
 

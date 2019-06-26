@@ -15,6 +15,10 @@ const selectListItems = [
   { value: "Aha!" }
 ]
 
+function consoleLogSelected(selectState) {
+  console.log("Selected option(s): ", selectState);
+}
+
 storiesOf('SelectList', module)
   .addDecorator(withInfo)
   .addParameters({
@@ -31,7 +35,8 @@ storiesOf('SelectList', module)
       bgColor="#e6e6e6"
       icon={KeyboardArrowDown}
       placeholder="Pick an option"
-      label="Select an option from the list" />
+      label="Select an option from the list"
+      onChangeSelected={consoleLogSelected} />
   ))
   .add('Multi-select list', () => (
     <SelectList
@@ -42,5 +47,6 @@ storiesOf('SelectList', module)
       placeholder="Pick options"
       label="Select options from the list"
       isMultiSelect
-      badgeBgColor="#FFCC00" />
+      badgeBgColor="#FFCC00"
+      onChangeSelected={consoleLogSelected} />
   ));
