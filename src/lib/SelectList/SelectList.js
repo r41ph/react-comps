@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import cx from 'classnames';
 import "./SelectList.scss";
@@ -57,6 +57,21 @@ const propTypes = {
 const SelectList = props => {
   const [isOpen, setOpen] = useState(false);
   const [optionsSelected, setOptionsSelected] = useState([]);
+  const selectListContainer = useRef();
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener("mousedown", onClickOutside);
+    } else {
+      document.removeEventListener("mousedown", onClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+    };
+  }, [isOpen]);
+
+
   const {
     onClick = () => { },
     className: customClasses = "",
@@ -78,6 +93,15 @@ const SelectList = props => {
   const onToggleSelect = () => {
     onClick();
     setOpen(!isOpen);
+  }
+
+  const onClickOutside = event => {
+    if (selectListContainer.current.contains(event.target)) {
+      // click inside
+      return;
+    }
+    // click outside
+    setOpen(false);
   }
 
   const onHandleSelectOption = event => {
@@ -139,8 +163,9 @@ const SelectList = props => {
   return (
     <div
       className={`${selectListClasses} ${customClasses}`}
-      style={{ width: selectWidth }}>
-      {label ? (<label className="rc-select__label">{label}</label>) : null}
+      style={{ width: selectWidth }}
+      ref={selectListContainer}>
+      {label ? <label className="rc-select__label">{label}</label> : null}
       <div
         className="rc-select-list"
         style={{ backgroundColor: bgColor }}
