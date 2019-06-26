@@ -1,6 +1,6 @@
 {
   "name": "react-comps",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "homepage": "https://github.com/r4lfl4b/react-comps",
   "main": "dist/index.js",
   "module": "dist/index.js",
