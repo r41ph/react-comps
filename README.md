@@ -9,20 +9,20 @@ $ npm i react-comps
 ```
 
 ```jsx
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 import { Button } from "react-comps";
-import LaunchIcon from "@material-ui/icons/Launch"
+import LaunchIcon from "@material-ui/icons/Launch";
 
 function App() {
   return (
     <Button size="sm" icon={LaunchIcon}>
-        Button Small
+      Button Small
     </Button>
   );
 }
 
-ReactDOM.render(<App />, document.querySelector('#app'));
+export default App;
 ```
 
 ## Development
@@ -55,7 +55,7 @@ To publish it to npm using:
 $ npm publish
 ```
 
-* Note that only README.md and the dist folders are published to npm.
+- Note that only README.md and the dist folders are published to npm.
 
 ## Thanks
 
