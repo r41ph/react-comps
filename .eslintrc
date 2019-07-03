@@ -1,1 +1,16 @@
-{ "extends": "react-app" }
+{
+  "extends": ["react-app", "prettier"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "jsxSingleQuote": true,
+        "printWidth": 80,
+        "bracketSpacing": true,
+        "jsxBracketSameLine": false
+      }
+    ]
+  },
+  "plugins": ["prettier"]
+}
