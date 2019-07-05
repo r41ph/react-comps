@@ -42,7 +42,7 @@ const propTypes = {
    * Specifies the aria-label text
    *
    */
-  ariaLabel: PropTypes.string
+  'aria-label': PropTypes.string
 };
 
 const Button = props => {
@@ -52,8 +52,7 @@ const Button = props => {
     onClick = () => {},
     href,
     icon = null,
-    className: customClasses = '',
-    ariaLabel = ''
+    className: customClasses = ''
   } = props;
 
   const buttonClasses = cx(
@@ -65,8 +64,6 @@ const Button = props => {
   );
 
   const TagType = href ? 'a' : 'button';
-
-  const hasAriaLabel = `${children ? null : ariaLabel}`;
 
   const handleClick = () => {
     onClick();
@@ -90,7 +87,6 @@ const Button = props => {
       onClick={handleClick}
       onKeyDown={handleKeyDown}
       className={`${buttonClasses} ${customClasses}`}
-      hasAriaLabel
     >
       {children}
       {icon && <ButtonIcon icon={icon} />}
