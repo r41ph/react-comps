@@ -5,7 +5,7 @@
       "error",
       {
         "singleQuote": true,
-        "jsxSingleQuote": true,
+        "jsxSingleQuote": false,
         "printWidth": 80,
         "bracketSpacing": true,
         "jsxBracketSameLine": false
