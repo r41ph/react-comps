@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
-import ButtonIcon from "./ButtonIcon";
-import "./Button.scss";
-
+import ButtonIcon from './ButtonIcon';
+import './Button.scss';
 
 const propTypes = {
   /**
@@ -37,43 +36,67 @@ const propTypes = {
    * Specifies the Material UI icon to use
    *
    */
-  icon: PropTypes.string
-}
+  icon: PropTypes.string,
+
+  /**
+   * Specifies the aria-label text
+   *
+   */
+  ariaLabel: PropTypes.string
+};
 
 const Button = props => {
   const {
     children,
-    size = "md",
-    onClick = () => { },
+    size = 'md',
+    onClick = () => {},
     href,
     icon = null,
-    className: customClasses = ""
+    className: customClasses = '',
+    ariaLabel = ''
   } = props;
 
   const buttonClasses = cx(
     'rc-button',
     `rc-button-${size}`,
-    `${href ? "rc-button-anchor" : ""}`,
-    `${icon && children ? "rc-button-with-icon" : ""}`,
-    `${!children ? "rc-button-just-icon" : ""}`
-  )
+    `${href ? 'rc-button-anchor' : ''}`,
+    `${icon && children ? 'rc-button-with-icon' : ''}`,
+    `${!children ? 'rc-button-just-icon' : ''}`
+  );
 
-  const TagType = href ? "a" : "button";
+  const TagType = href ? 'a' : 'button';
+
+  const hasAriaLabel = `${children ? null : ariaLabel}`;
 
   const handleClick = () => {
     onClick();
-  }
+  };
+
+  const handleKeyDown = event => {
+    if (
+      event.key === ' ' ||
+      event.key === 'Enter' ||
+      event.key === 'Spacebar' // "Spacebar" for IE11 support
+    ) {
+      // Stop scrolling when space is pressed
+      event.preventDefault();
+      onClick();
+    }
+  };
 
   return (
     <TagType
       {...props}
       onClick={handleClick}
-      className={`${buttonClasses} ${customClasses}`}>
+      onKeyDown={handleKeyDown}
+      className={`${buttonClasses} ${customClasses}`}
+      hasAriaLabel
+    >
       {children}
       {icon && <ButtonIcon icon={icon} />}
-    </TagType >
-  )
-}
+    </TagType>
+  );
+};
 
 Button.propTypes = propTypes;
 
