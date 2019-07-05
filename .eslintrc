@@ -1,5 +1,5 @@
 {
-  "extends": ["react-app", "prettier"],
+  "extends": ["react-app", "prettier", "plugin:jsx-a11y/recommended"],
   "rules": {
     "prettier/prettier": [
       "error",
@@ -12,5 +12,5 @@
       }
     ]
   },
-  "plugins": ["prettier"]
+  "plugins": ["prettier", "jsx-a11y"]
 }
