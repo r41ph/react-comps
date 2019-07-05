@@ -30,11 +30,6 @@ const propTypes = {
   labelText: PropTypes.string,
 
   /**
-   * Sets the aria-label text
-   */
-  ariaLabelText: PropTypes.string,
-
-  /**
    * Sets the placeholder text
    */
   placeholder: PropTypes.string,
