@@ -5,17 +5,12 @@
   background-color: $color-primary;
 
   &:hover {
-    opacity: .7;
+    opacity: 0.7;
     cursor: pointer;
   }
 
   &-sm {
     padding: 10px 20px;
-    font-size: .8rem;
-
-    svg {
-      font-size: .9rem;
-    }
 
     &.rc-button-just-icon {
       padding: 10px;
@@ -24,11 +19,6 @@
 
   &-md {
     padding: 20px 40px;
-    font-size: 1rem;
-
-    svg {
-      font-size: 1.1rem;
-    }
 
     &.rc-button-just-icon {
       padding: 15px;
@@ -37,11 +27,6 @@
 
   &-lg {
     padding: 30px 60px;
-    font-size: 1.3rem;
-
-    svg {
-      font-size: .1.2rem;
-    }
 
     &.rc-button-just-icon {
       padding: 20px;
@@ -80,7 +65,7 @@
     svg {
       fill: #fff;
     }
-    
+
     > .rc-button-with-icon__icon {
       display: flex;
       align-items: center;

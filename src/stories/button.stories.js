@@ -34,16 +34,21 @@ storiesOf('Button', module)
   ))
   .add('With icon', () => (
     <div className="rc-story story-buttons-with-icon">
-      <Button size="sm" icon={LaunchIcon} className="custom-class-here">
+      <Button
+        size="sm"
+        icon={LaunchIcon}
+        iconSize={16}
+        className="custom-class-here"
+      >
         Button Small
       </Button>
-      <Button size="md" icon={LaunchIcon}>
+      <Button size="md" icon={LaunchIcon} iconSize={20}>
         Button Medium
       </Button>
-      <Button size="lg" icon={LaunchIcon}>
+      <Button size="lg" icon={LaunchIcon} iconSize={28}>
         Button Large
       </Button>
-      <Button size="full-width" icon={LaunchIcon}>
+      <Button size="full-width" icon={LaunchIcon} iconSize={20}>
         Button Full-width
       </Button>
     </div>

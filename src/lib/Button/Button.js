@@ -42,7 +42,12 @@ const propTypes = {
    * Specifies the aria-label text
    *
    */
-  'aria-label': PropTypes.string
+  'aria-label': PropTypes.string,
+
+  /**
+   * Specifies the icon size in pixels.
+   */
+  iconSize: PropTypes.number
 };
 
 const Button = props => {
@@ -52,7 +57,8 @@ const Button = props => {
     onClick = () => {},
     href,
     icon = null,
-    className: customClasses = ''
+    className: customClasses = '',
+    iconSize
   } = props;
 
   const buttonClasses = cx(
@@ -89,7 +95,7 @@ const Button = props => {
       className={`${buttonClasses} ${customClasses}`}
     >
       {children}
-      {icon && <ButtonIcon icon={icon} />}
+      {icon && <ButtonIcon icon={icon} iconSize={iconSize} />}
     </TagType>
   );
 };
