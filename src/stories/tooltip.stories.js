@@ -24,9 +24,12 @@ storiesOf('Tooltip', module)
         </Button>
       );
     };
+    const icon = () => {
+      return <Button icon={ReplyAllIcon} />;
+    };
     return (
       <>
-        <Tooltip trigger="HTML Tooltip" width="200px">
+        <Tooltip trigger="HTML Tooltip">
           <ul>
             <li>Yay!</li>
             <li>Woop!</li>
@@ -34,13 +37,22 @@ storiesOf('Tooltip', module)
         </Tooltip>
         <br />
         <br />
-        <Tooltip trigger={button()} width="200px">
-          Click me!
-        </Tooltip>
+        <Tooltip trigger={button()}>Click me!</Tooltip>
         <br />
         <br />
-        <Tooltip trigger="Just text trigger" width="200px">
-          Some info here..
+        <Tooltip trigger={icon()}>Reply All</Tooltip>
+        <br />
+        <br />
+        <Tooltip trigger="Just text trigger">Some info here..</Tooltip>
+        <br />
+        <br />
+        <Tooltip trigger="With width" width="200px">
+          <p>
+            Toffee marzipan icing. Pudding jelly chocolate bar marzipan
+            tiramisu. Biscuit sesame snaps jelly beans pastry cake halvah.
+            Tootsie roll cookie jelly jelly-o dragée cotton candy chocolate
+            lollipop. Oat cake croissant gummies.
+          </p>
         </Tooltip>
       </>
     );
