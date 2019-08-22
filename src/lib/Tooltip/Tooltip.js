@@ -27,14 +27,13 @@ const propTypes = {
 };
 
 const TooltipContent = props => {
-  const { type, children, position, visible, width, styles } = props;
+  const { type, children, position, width, styles } = props;
   const tooltipStyle = {
     width: width ? width : 'auto',
-    visibility: visible ? 'visible' : 'hidden',
     ...styles
   };
-
   const tooltipContentWrapper = document.createElement('div');
+
   useEffect(() => {
     tooltipContentWrapper.classList.add('rc-tooltip__content-wrapper');
     document.body.appendChild(tooltipContentWrapper);
@@ -71,10 +70,9 @@ const Tooltip = props => {
     width
   } = props;
 
-  const onShowTooltip = trigger => {
+  const onShowTooltip = triggerEl => {
+    const triggerProperties = triggerEl.target.getBoundingClientRect();
     setVisible(true);
-    const triggerProperties = trigger.target.getBoundingClientRect();
-
     setStyles({
       position: 'fixed',
       left: triggerProperties.width + 20,
@@ -89,17 +87,16 @@ const Tooltip = props => {
   return (
     <div
       className="rc-tooltip__wrapper"
-      onMouseEnter={trigger => onShowTooltip(trigger, true)}
+      onMouseEnter={triggerEl => onShowTooltip(triggerEl)}
       onMouseLeave={() => onHideTooltip(false)}
     >
-      <div className="rc-tooltip__trigger" ref={trigger => trigger}>
+      <div className="rc-tooltip__trigger" ref={triggerEl => triggerEl}>
         {trigger}
       </div>
       {visible && (
         <TooltipContent
           type={type}
           position={position}
-          visible={visible}
           width={width}
           styles={styles}
         >
