@@ -26,39 +26,6 @@ const propTypes = {
   type: PropTypes.string
 };
 
-const TooltipContent = props => {
-  const { type, children, position, width, styles } = props;
-  const tooltipStyle = {
-    width: width ? width : 'auto',
-    ...styles
-  };
-  const tooltipContentWrapper = document.createElement('div');
-
-  useEffect(() => {
-    tooltipContentWrapper.classList.add('rc-tooltip__content-wrapper');
-    document.body.appendChild(tooltipContentWrapper);
-    return () => {
-      document.body.removeChild(tooltipContentWrapper);
-    };
-  }, [tooltipContentWrapper]);
-
-  const renderTooltipContent = (tooltipStyle, children) => {
-    return (
-      <div
-        style={tooltipStyle}
-        className={`rc-tooltip rc-tooltip-${position} rc-tooltip-${type}`}
-      >
-        {children}
-      </div>
-    );
-  };
-
-  return ReactDOM.createPortal(
-    renderTooltipContent(tooltipStyle, children),
-    tooltipContentWrapper
-  );
-};
-
 const Tooltip = props => {
   const [visible, setVisible] = useState(false);
   const [styles, setStyles] = useState({});
@@ -104,6 +71,39 @@ const Tooltip = props => {
         </TooltipContent>
       )}
     </div>
+  );
+};
+
+const TooltipContent = props => {
+  const { type, children, position, width, styles } = props;
+  const tooltipStyle = {
+    width: width ? width : 'auto',
+    ...styles
+  };
+  const tooltipContentWrapper = document.createElement('div');
+
+  useEffect(() => {
+    tooltipContentWrapper.classList.add('rc-tooltip__content-wrapper');
+    document.body.appendChild(tooltipContentWrapper);
+    return () => {
+      document.body.removeChild(tooltipContentWrapper);
+    };
+  }, [tooltipContentWrapper]);
+
+  const renderTooltipContent = (tooltipStyle, children) => {
+    return (
+      <div
+        style={tooltipStyle}
+        className={`rc-tooltip rc-tooltip-${position} rc-tooltip-${type}`}
+      >
+        {children}
+      </div>
+    );
+  };
+
+  return ReactDOM.createPortal(
+    renderTooltipContent(tooltipStyle, children),
+    tooltipContentWrapper
   );
 };
 
