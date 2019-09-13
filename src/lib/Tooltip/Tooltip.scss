@@ -1,12 +1,8 @@
 .rc-tooltip__wrapper {
   display: inline-block;
-
-  .rc-tooltip__trigger {
-    position: relative;
-    display: inline-block;
-  }
 }
 .rc-tooltip__content-wrapper {
+  position: relative;
   .rc-tooltip {
     padding: 3px 5px;
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import './Tooltip.scss';
@@ -10,9 +10,9 @@ const propTypes = {
   trigger: PropTypes.any,
 
   /**
-   * Tooltip position relative to the trigger
+   * Tooltip placement relative to the trigger
    */
-  position: PropTypes.string,
+  placement: PropTypes.string,
 
   /**
    * Specifies the content to show in the tooltip
@@ -20,52 +20,54 @@ const propTypes = {
   children: PropTypes.any,
 
   /**
+   * Specifies the tooltip width
+   * * Accepts px|em|rem => i.e: width="20rem"
+   */
+  width: PropTypes.string,
+
+  /**
    * Tooltip type
-   * * @type ('basic'|'bubble')
+   * * @type ('basic')
    */
   type: PropTypes.string
 };
 
 const Tooltip = props => {
-  const [visible, setVisible] = useState(false);
-  const [styles, setStyles] = useState({});
+  const [isHovered, setIsHovered] = useState(false);
+  const [triggerMeasure, setTriggerMeasure] = useState({});
   const {
     trigger,
     type = 'basic',
     children,
-    position = 'right',
+    placement = 'right',
     width
   } = props;
 
   const onShowTooltip = triggerEl => {
-    const triggerProperties = triggerEl.target.getBoundingClientRect();
-    setVisible(true);
-    setStyles({
-      position: 'fixed',
-      left: triggerProperties.width + 20,
-      top: triggerProperties.top + triggerProperties.height / 2
-    });
+    setIsHovered(true);
+    setTriggerMeasure(triggerEl.target.getBoundingClientRect());
   };
 
   const onHideTooltip = () => {
-    setVisible(false);
+    setIsHovered(false);
+    setTriggerMeasure({});
   };
 
   return (
     <div
       className="rc-tooltip__wrapper"
       onMouseEnter={triggerEl => onShowTooltip(triggerEl)}
-      onMouseLeave={() => onHideTooltip(false)}
+      onMouseLeave={() => onHideTooltip()}
     >
       <div className="rc-tooltip__trigger" ref={triggerEl => triggerEl}>
         {trigger}
       </div>
-      {visible && (
+      {isHovered && (
         <TooltipContent
           type={type}
-          position={position}
+          placement={placement}
           width={width}
-          styles={styles}
+          triggerMeasure={triggerMeasure}
         >
           {children}
         </TooltipContent>
@@ -75,36 +77,57 @@ const Tooltip = props => {
 };
 
 const TooltipContent = props => {
-  const { type, children, position, width, styles } = props;
-  const tooltipStyle = {
-    width: width ? width : 'auto',
-    ...styles
-  };
-  const tooltipContentWrapper = document.createElement('div');
+  const [styles, setStyles] = useState({});
+  const tooltipRef = useRef();
 
   useEffect(() => {
-    tooltipContentWrapper.classList.add('rc-tooltip__content-wrapper');
+    const { triggerMeasure, width } = props;
+
+    // Set tooltip position
+    const tooltipLeft = triggerMeasure.width + 20;
+    const tooltipTop = triggerMeasure.top;
+    const triggerHeight = triggerMeasure.height;
+    const tooltipMeasure = tooltipRef.current.getBoundingClientRect();
+    const tooltipHeight = tooltipMeasure.height;
+
+    const tooltipStyle = {
+      boxSizing: 'border-box',
+      width: width ? width : 'auto',
+      position: 'fixed',
+      left: tooltipLeft,
+      top: tooltipTop + triggerHeight / 2 - tooltipHeight / 2
+    };
+
+    if (JSON.stringify(tooltipStyle) !== JSON.stringify(styles)) {
+      setStyles(tooltipStyle);
+    }
+  }, [props, styles]);
+
+  return (
+    <TooltipContentPortal>
+      <div
+        style={styles}
+        className={`rc-tooltip rc-tooltip-${props.placement} rc-tooltip-${props.type}`}
+        ref={tooltipRef}
+      >
+        {props.children}
+      </div>
+    </TooltipContentPortal>
+  );
+};
+
+const TooltipContentPortal = props => {
+  const tooltipContentWrapper = document.createElement('div');
+  tooltipContentWrapper.classList.add('rc-tooltip__content-wrapper');
+
+  useEffect(() => {
     document.body.appendChild(tooltipContentWrapper);
     return () => {
       document.body.removeChild(tooltipContentWrapper);
     };
   }, [tooltipContentWrapper]);
 
-  const renderTooltipContent = (tooltipStyle, children) => {
-    return (
-      <div
-        style={tooltipStyle}
-        className={`rc-tooltip rc-tooltip-${position} rc-tooltip-${type}`}
-      >
-        {children}
-      </div>
-    );
-  };
-
-  return ReactDOM.createPortal(
-    renderTooltipContent(tooltipStyle, children),
-    tooltipContentWrapper
-  );
+  return ReactDOM.createPortal(props.children, tooltipContentWrapper);
 };
 
 Tooltip.propTypes = propTypes;
