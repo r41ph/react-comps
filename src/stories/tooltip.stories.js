@@ -13,6 +13,9 @@ storiesOf('Tooltip', module)
     }
   })
   .add('Tooltip basic', () => {
+    return <Tooltip trigger="Just text trigger">Some info here..</Tooltip>;
+  })
+  .add('Tooltip with a component', () => {
     const button = () => {
       return (
         <Button
@@ -20,50 +23,48 @@ storiesOf('Tooltip', module)
             console.log('Button clicked');
           }}
         >
-          I'm a component!
+          I'm a Button!
         </Button>
       );
     };
     const icon = () => {
-      return <Button icon={ReplyAllIcon} />;
+      return (
+        <Button
+          size="md"
+          icon={ReplyAllIcon}
+          aria-label="Reply All"
+          iconSize={34}
+        />
+      );
     };
     return (
       <>
-        <Tooltip trigger="HTML Tooltip">
-          <ul>
-            <li>Yay!</li>
-            <li>Woop!</li>
-          </ul>
-        </Tooltip>
-        <br />
-        <br />
         <Tooltip trigger={button()}>Click me!</Tooltip>
         <br />
         <br />
         <Tooltip trigger={icon()}>Reply All</Tooltip>
-        <br />
-        <br />
-        <Tooltip trigger="Just text trigger">Some info here..</Tooltip>
-        <br />
-        <br />
-        <Tooltip trigger="With width" width="200px">
-          <p>
-            Toffee marzipan icing. Pudding jelly chocolate bar marzipan
-            tiramisu. Biscuit sesame snaps jelly beans pastry cake halvah.
-            Tootsie roll cookie jelly jelly-o dragée cotton candy chocolate
-            lollipop. Oat cake croissant gummies.
-          </p>
-        </Tooltip>
       </>
     );
   })
-  .add('Tooltip on Icon', () => (
-    <Tooltip content="Reply All">
-      <Button
-        size="md"
-        icon={ReplyAllIcon}
-        aria-label="Reply All"
-        iconSize={34}
-      />
-    </Tooltip>
-  ));
+  .add('Tooltip with HTML', () => {
+    return (
+      <Tooltip trigger="HTML Tooltip">
+        <ul>
+          <li>Yay!</li>
+          <li>Woop!</li>
+        </ul>
+      </Tooltip>
+    );
+  })
+  .add('Tooltip with fixed width', () => {
+    return (
+      <Tooltip trigger="With width" width="20rem">
+        <p>
+          Toffee marzipan icing. Pudding jelly chocolate bar marzipan tiramisu.
+          Biscuit sesame snaps jelly beans pastry cake halvah. Tootsie roll
+          cookie jelly jelly-o dragée cotton candy chocolate lollipop. Oat cake
+          croissant gummies.
+        </p>
+      </Tooltip>
+    );
+  });
