@@ -1,18 +1,86 @@
+@import "../../../dist/theme/theme.scss";
+
 .rc-tooltip__wrapper {
   display: inline-block;
 }
 .rc-tooltip__content-wrapper {
-  position: relative;
   .rc-tooltip {
-    padding: 3px 5px;
+    padding: 5px 15px;
+    background-color: $color-primary;
+  }
+}
 
-    &-basic {
-      background-color: #666;
+.rc-tooltip__trigger {
+  &.rc-tooltip__type {
+    &--text {
+      border-bottom: 1px dashed $color-primary;
     }
+  }
+}
 
-    &-left {
-      margin-right: 10px;
-      float: left;
-    }
+.rc-tooltip__arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: $color-primary;
+  position: absolute;
+}
+
+.rc-tooltip[data-placement^="top"] {
+  margin-bottom: 8px;
+
+  .rc-tooltip__arrow {
+    border-width: 8px 8px 0 8px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    bottom: -8px;
+    left: calc(50% - 8px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.rc-tooltip[data-placement^="bottom"] {
+  margin-top: 8px;
+
+  .rc-tooltip__arrow {
+    border-width: 0 8px 8px 8px;
+    border-left-color: transparent;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    top: -8px;
+    left: calc(50% - 8px);
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.rc-tooltip[data-placement^="right"] {
+  margin-left: 12px;
+
+  .rc-tooltip__arrow {
+    border-width: 8px 8px 8px 0;
+    border-left-color: transparent;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    left: -8px;
+    top: calc(50% - 8px);
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+.rc-tooltip[data-placement^="left"] {
+  margin-right: 12px;
+
+  .rc-tooltip__arrow {
+    border-width: 8px 0 8px 8px;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    right: -8px;
+    top: calc(50% - 8px);
+    margin-left: 0;
+    margin-right: 0;
   }
 }
