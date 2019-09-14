@@ -27,8 +27,9 @@ const propTypes = {
   width: PropTypes.string,
 
   /**
-   * Tooltip type
-   * * @type ('basic')
+   * Tooltip type.
+   * Each type has different assiciated styles
+   * * @type `text` => text has a dashed underline
    */
   type: PropTypes.string
 };
