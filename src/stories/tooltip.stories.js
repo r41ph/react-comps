@@ -12,8 +12,21 @@ storiesOf('Tooltip', module)
       source: true
     }
   })
-  .add('Tooltip basic', () => {
-    return <Tooltip trigger="Just text trigger">Some info here..</Tooltip>;
+  .add('Tooltip for text', () => {
+    return (
+      <>
+        <Tooltip trigger="Just text trigger" type="text">
+          Some info here..
+        </Tooltip>
+        <br />
+        <br />
+        Biscuit sesame snaps{' '}
+        <Tooltip trigger="chocolate" type="text" placement="top">
+          Chocolate info here..
+        </Tooltip>{' '}
+        beans pastry cake halvah.
+      </>
+    );
   })
   .add('Tooltip with a component', () => {
     const button = () => {
@@ -49,16 +62,20 @@ storiesOf('Tooltip', module)
   .add('Tooltip with HTML', () => {
     return (
       <Tooltip trigger="HTML Tooltip">
-        <ul>
-          <li>Yay!</li>
-          <li>Woop!</li>
-        </ul>
+        <h4 style={{ marginBottom: '5px' }}>Heading</h4>
+        <p style={{ marginTop: '0px' }}>
+          <a href="http://google.com" target="_blank" rel="noopener noreferrer">
+            Pudding
+          </a>{' '}
+          jelly<i> chocolate</i> bar <br />
+          <b>marzipan</b> tiramisu.
+        </p>
       </Tooltip>
     );
   })
   .add('Tooltip with fixed width', () => {
     return (
-      <Tooltip trigger="With width" width="20rem">
+      <Tooltip trigger="With fixed width" width="20rem" placement="bottom">
         <p>
           Toffee marzipan icing. Pudding jelly chocolate bar marzipan tiramisu.
           Biscuit sesame snaps jelly beans pastry cake halvah. Tootsie roll
