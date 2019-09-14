@@ -12,8 +12,22 @@ storiesOf('Tooltip', module)
       source: true
     }
   })
-  .add('Tooltip basic', () => {
-    return <Tooltip trigger="Just text trigger">Some info here..</Tooltip>;
+  .add('Tooltip for text', () => {
+    return (
+      <>
+        <Tooltip trigger="Just text trigger" type="text">
+          Some info here..
+        </Tooltip>
+        <br />
+        <br />
+        Toffee marzipan icing. Pudding jelly chocolate bar marzipan tiramisu.
+        Biscuit sesame snaps{' '}
+        <Tooltip trigger="chocolate" type="text" placement="top">
+          Chocolate info here..
+        </Tooltip>{' '}
+        beans pastry cake halvah.
+      </>
+    );
   })
   .add('Tooltip with a component', () => {
     const button = () => {
@@ -58,7 +72,7 @@ storiesOf('Tooltip', module)
   })
   .add('Tooltip with fixed width', () => {
     return (
-      <Tooltip trigger="With width" width="20rem">
+      <Tooltip trigger="With fixed width" width="20rem" placement="bottom">
         <p>
           Toffee marzipan icing. Pudding jelly chocolate bar marzipan tiramisu.
           Biscuit sesame snaps jelly beans pastry cake halvah. Tootsie roll
