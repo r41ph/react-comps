@@ -36,15 +36,9 @@ const propTypes = {
 
 const Tooltip = props => {
   const [isHovered, setIsHovered] = useState(false);
-  const {
-    trigger,
-    type = undefined,
-    children,
-    placement = 'right',
-    width
-  } = props;
+  const { trigger, type, children, placement = 'right', width } = props;
 
-  const onShowTooltip = triggerEl => {
+  const onShowTooltip = () => {
     setIsHovered(true);
   };
 
@@ -55,8 +49,8 @@ const Tooltip = props => {
   return (
     <div
       className="rc-tooltip__wrapper"
-      onMouseEnter={triggerEl => onShowTooltip(triggerEl)}
-      onMouseLeave={() => onHideTooltip()}
+      onMouseEnter={onShowTooltip}
+      onMouseLeave={onHideTooltip}
     >
       <Manager>
         <Reference>
