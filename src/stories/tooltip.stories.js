@@ -20,7 +20,6 @@ storiesOf('Tooltip', module)
         </Tooltip>
         <br />
         <br />
-        Toffee marzipan icing. Pudding jelly chocolate bar marzipan tiramisu.
         Biscuit sesame snaps{' '}
         <Tooltip trigger="chocolate" type="text" placement="top">
           Chocolate info here..
