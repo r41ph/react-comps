@@ -9,6 +9,7 @@ $arrow-size: 8px;
 .rc-tooltip__content-wrapper {
   .rc-tooltip {
     padding: 5px 15px;
+    border-radius: 4px;
     background-color: $color-primary;
   }
 }
@@ -31,14 +32,14 @@ $arrow-size: 8px;
 
 .rc-tooltip[data-placement^="top"] {
   margin-bottom: 8px;
+  animation: tooltipAnimation 500ms;
 
   .rc-tooltip__arrow {
     border-width: $arrow-size $arrow-size 0 $arrow-size;
     border-left-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    bottom: -$arrow-size;
-    left: calc(50% - $arrow-size);
+    bottom: -$arrow-size + 1;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -46,14 +47,14 @@ $arrow-size: 8px;
 
 .rc-tooltip[data-placement^="bottom"] {
   margin-top: 8px;
+  animation: tooltipAnimation 500ms;
 
   .rc-tooltip__arrow {
     border-width: 0 $arrow-size $arrow-size $arrow-size;
     border-left-color: transparent;
     border-right-color: transparent;
     border-top-color: transparent;
-    top: -$arrow-size;
-    left: calc(50% - $arrow-size);
+    top: -$arrow-size + 1;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -61,14 +62,14 @@ $arrow-size: 8px;
 
 .rc-tooltip[data-placement^="right"] {
   margin-left: 12px;
+  animation: tooltipAnimation 500ms;
 
   .rc-tooltip__arrow {
     border-width: $arrow-size $arrow-size $arrow-size 0;
     border-left-color: transparent;
     border-top-color: transparent;
     border-bottom-color: transparent;
-    left: -$arrow-size;
-    top: calc(50% - $arrow-size);
+    left: -$arrow-size + 1;
     margin-left: 0;
     margin-right: 0;
   }
@@ -76,15 +77,24 @@ $arrow-size: 8px;
 
 .rc-tooltip[data-placement^="left"] {
   margin-right: 12px;
+  animation: tooltipAnimation 500ms;
 
   .rc-tooltip__arrow {
     border-width: $arrow-size 0 $arrow-size $arrow-size;
     border-top-color: transparent;
     border-right-color: transparent;
     border-bottom-color: transparent;
-    right: -$arrow-size;
-    top: calc(50% - $arrow-size);
+    right: -$arrow-size + 1;
     margin-left: 0;
     margin-right: 0;
+  }
+}
+
+@keyframes tooltipAnimation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
