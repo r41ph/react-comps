@@ -11,7 +11,13 @@ const propTypes = {
   trigger: PropTypes.any,
 
   /**
-   * Tooltip placement
+   * Tooltip placement.
+   * @default `right`
+   * @Options
+   *  `top-start`, `top`, `top-end`
+   *  `right-start`, `right`, `right-end`
+   *  `bottom-start`, `bottom`, `bottom-end`
+   *  `left-start`, `left`, `left-end`
    */
   placement: PropTypes.string,
 
@@ -28,8 +34,7 @@ const propTypes = {
 
   /**
    * Tooltip type.
-   * Each type has different assiciated styles
-   * * @type `text` => text has a dashed underline
+   * `text` => has a dashed underline
    */
   type: PropTypes.string
 };
