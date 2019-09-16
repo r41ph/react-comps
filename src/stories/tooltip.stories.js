@@ -12,7 +12,7 @@ storiesOf('Tooltip', module)
       source: true
     }
   })
-  .add('Tooltip for text', () => {
+  .add('Text trigger', () => {
     return (
       <>
         <Tooltip trigger="Just text trigger" type="text">
@@ -28,7 +28,7 @@ storiesOf('Tooltip', module)
       </>
     );
   })
-  .add('Tooltip with a component', () => {
+  .add('With a component', () => {
     const button = () => {
       return (
         <Button
@@ -59,7 +59,7 @@ storiesOf('Tooltip', module)
       </>
     );
   })
-  .add('Tooltip with HTML', () => {
+  .add('With HTML', () => {
     return (
       <Tooltip trigger="HTML Tooltip">
         <h4 style={{ marginBottom: '5px' }}>Heading</h4>
@@ -73,7 +73,7 @@ storiesOf('Tooltip', module)
       </Tooltip>
     );
   })
-  .add('Tooltip with fixed width', () => {
+  .add('With fixed width', () => {
     return (
       <Tooltip trigger="With fixed width" width="20rem" placement="bottom">
         <p>
@@ -83,5 +83,88 @@ storiesOf('Tooltip', module)
           croissant gummies.
         </p>
       </Tooltip>
+    );
+  })
+  .add('Placement options', () => {
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(5, 1fr)',
+          gridTemplateRows: 3,
+          gridRowGap: '60px'
+        }}
+      >
+        <div></div>
+        <div>
+          <Tooltip trigger="TOP-START" placement="top-start">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="TOP" placement="top">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="TOP-END" placement="top-end">
+            Info
+          </Tooltip>
+        </div>
+        <div></div>
+        <div></div>
+        {/* RIGHT */}
+        <div>
+          <Tooltip trigger="RIGHT-START" placement="right-start">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="RIGHT" placement="right">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="RIGHT-END" placement="right-end">
+            Info
+          </Tooltip>
+        </div>
+        <div></div>
+        <div></div>
+        {/* BOTTOM */}
+        <div>
+          <Tooltip trigger="BOTTOM-START" placement="bottom-start">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="BOTTOM" placement="bottom">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="BOTTOM-END" placement="bottom-end">
+            Info
+          </Tooltip>
+        </div>
+        <div></div>
+        <div></div>
+        {/* LEFT */}
+        <div>
+          <Tooltip trigger="LEFT-START" placement="left-start">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="LEFT" placement="left">
+            Info
+          </Tooltip>
+        </div>
+        <div>
+          <Tooltip trigger="LEFT-END" placement="left-end">
+            Info
+          </Tooltip>
+        </div>
+      </div>
     );
   });
