@@ -25,6 +25,10 @@ function App() {
 export default App;
 ```
 
+## Demo
+
+https://r4lfl4b.github.io/react-comps
+
 ## Development
 
 To start the development server (with entry point `src/index.js`), run
@@ -33,15 +37,19 @@ To start the development server (with entry point `src/index.js`), run
 $ npm start
 ```
 
-## Storybook
-
-To start the components explorer
+To start the Storybook components explorer
 
 ```
 $ npm run storybook
 ```
 
-## Publish to npm
+## Publish Storybook to Github Pages
+
+```
+$ npm run deploy-storybook
+```
+
+## Publish package to npm
 
 To transpile `src/lib` and create a build in the `dist` folder, run:
 
@@ -49,14 +57,10 @@ To transpile `src/lib` and create a build in the `dist` folder, run:
 $ npm run build
 ```
 
-To publish it to npm using:
+Publish:
 
 ```
 $ npm publish
 ```
 
 - Note that only README.md and the dist folders are published to npm.
-
-## Thanks
-
-Based on [this](https://github.com/aakashns/create-component-lib) project.
