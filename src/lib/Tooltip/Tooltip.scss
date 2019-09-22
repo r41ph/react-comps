@@ -20,6 +20,12 @@ $arrow-size: 8px;
       border-bottom: 1px dashed $color-primary;
     }
   }
+
+  &--click {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .rc-tooltip__arrow {
