@@ -85,6 +85,22 @@ storiesOf('Tooltip', module)
       </Tooltip>
     );
   })
+  .add('Open on click', () => {
+    return (
+      <p>
+        Tootsie roll{' '}
+        <Tooltip
+          trigger="cookie jelly"
+          triggerOnClick
+          type="text"
+          placement="top"
+        >
+          Info cookie jelly
+        </Tooltip>{' '}
+        dragée cotton.
+      </p>
+    );
+  })
   .add('Placement options', () => {
     return (
       <div
