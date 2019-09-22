@@ -44,12 +44,24 @@ const propTypes = {
    * Tooltip type.
    * `text` => has a dashed underline
    */
-  type: PropTypes.string
+  type: PropTypes.string,
+
+  /**
+   * Specifies if the tooltip should open on click event
+   */
+  triggerOnClick: PropTypes.bool
 };
 
 const Tooltip = props => {
   const [isHovered, setIsHovered] = useState(false);
-  const { trigger, type, children, placement = 'right', width } = props;
+  const {
+    trigger,
+    type,
+    children,
+    placement = 'right',
+    width,
+    triggerOnClick = false
+  } = props;
 
   const onShowTooltip = () => {
     setIsHovered(true);
@@ -59,18 +71,32 @@ const Tooltip = props => {
     setIsHovered(false);
   };
 
+  const onClickTooltip = () => {
+    setIsHovered(!isHovered);
+  };
+
+  const tooltipListeners = triggerOnClick
+    ? {
+        onClick: onClickTooltip,
+        onMouseLeave: onHideTooltip
+      }
+    : {
+        onMouseEnter: onShowTooltip,
+        onMouseLeave: onHideTooltip,
+        onFocus: onShowTooltip,
+        onBlur: onHideTooltip
+      };
+
   return (
-    <div
-      className="rc-tooltip__wrapper"
-      onMouseEnter={onShowTooltip}
-      onMouseLeave={onHideTooltip}
-    >
+    <div className="rc-tooltip__wrapper" {...tooltipListeners}>
       <Manager>
         <Reference>
           {({ ref }) => {
             return (
               <div
-                className={`rc-tooltip__trigger rc-tooltip__type--${type}`}
+                className={`rc-tooltip__trigger rc-tooltip__type--${type} ${
+                  triggerOnClick ? 'rc-tooltip__trigger--click' : ''
+                }`}
                 ref={ref}
               >
                 {trigger}
