@@ -13,13 +13,21 @@ const propTypes = {
   /**
    * Tooltip placement.
    * @default `right`
-   * @Options
-   *  `top-start`, `top`, `top-end`
-   *  `right-start`, `right`, `right-end`
-   *  `bottom-start`, `bottom`, `bottom-end`
-   *  `left-start`, `left`, `left-end`
    */
-  placement: PropTypes.string,
+  placement: PropTypes.oneOf([
+    'bottom-end',
+    'bottom-start',
+    'bottom',
+    'left-end',
+    'left-start',
+    'left',
+    'right-end',
+    'right-start',
+    'right',
+    'top-end',
+    'top-start',
+    'top'
+  ]),
 
   /**
    * Specifies the content to show in the tooltip
@@ -84,7 +92,6 @@ const TooltipContent = ({ placement, width, type, children }) => (
   <TooltipContentPortal>
     <Popper placement={placement}>
       {({ placement, ref, style, arrowProps }) => {
-        console.log('arrowProps', arrowProps);
         return (
           <div
             ref={ref}
