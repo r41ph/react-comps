@@ -113,72 +113,76 @@ storiesOf('Tooltip', module)
       >
         <div></div>
         <div>
-          <Tooltip trigger="TOP-START" placement="top-start">
-            Info
+          <Tooltip width="160px" trigger="TOP-START" placement="top-start">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="TOP" placement="top">
-            Info
+          <Tooltip width="160px" trigger="TOP" placement="top">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="TOP-END" placement="top-end">
-            Info
+          <Tooltip width="160px" trigger="TOP-END" placement="top-end">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div></div>
         <div></div>
         {/* RIGHT */}
         <div>
-          <Tooltip trigger="RIGHT-START" placement="right-start">
-            Info
+          <Tooltip width="160px" trigger="RIGHT-START" placement="right-start">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="RIGHT" placement="right">
-            Info
+          <Tooltip width="160px" trigger="RIGHT" placement="right">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="RIGHT-END" placement="right-end">
-            Info
+          <Tooltip width="160px" trigger="RIGHT-END" placement="right-end">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div></div>
         <div></div>
         {/* BOTTOM */}
         <div>
-          <Tooltip trigger="BOTTOM-START" placement="bottom-start">
-            Info
+          <Tooltip
+            width="160px"
+            trigger="BOTTOM-START"
+            placement="bottom-start"
+          >
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="BOTTOM" placement="bottom">
-            Info
+          <Tooltip width="160px" trigger="BOTTOM" placement="bottom">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="BOTTOM-END" placement="bottom-end">
-            Info
+          <Tooltip width="160px" trigger="BOTTOM-END" placement="bottom-end">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div></div>
         <div></div>
         {/* LEFT */}
         <div>
-          <Tooltip trigger="LEFT-START" placement="left-start">
-            Info
+          <Tooltip width="160px" trigger="LEFT-START" placement="left-start">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="LEFT" placement="left">
-            Info
+          <Tooltip width="160px" trigger="LEFT" placement="left">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
         <div>
-          <Tooltip trigger="LEFT-END" placement="left-end">
-            Info
+          <Tooltip width="160px" trigger="LEFT-END" placement="left-end">
+            Cupcake ipsum dolor sit amet sugar plum bear.
           </Tooltip>
         </div>
       </div>
