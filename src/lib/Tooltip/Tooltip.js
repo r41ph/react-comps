@@ -60,7 +60,7 @@ const Tooltip = props => {
     children,
     placement = 'right',
     width,
-    triggerOnClick = false
+    triggerOnClick: isTriggerOnClick = false
   } = props;
 
   const onShowTooltip = () => {
@@ -75,7 +75,7 @@ const Tooltip = props => {
     setIsHovered(!isHovered);
   };
 
-  const tooltipListeners = triggerOnClick
+  const tooltipListeners = isTriggerOnClick
     ? {
         onClick: onClickTooltip,
         onMouseLeave: onHideTooltip
@@ -95,7 +95,7 @@ const Tooltip = props => {
             return (
               <div
                 className={`rc-tooltip__trigger rc-tooltip__type--${type} ${
-                  triggerOnClick ? 'rc-tooltip__trigger--click' : ''
+                  isTriggerOnClick ? 'rc-tooltip__trigger--click' : ''
                 }`}
                 ref={ref}
               >
