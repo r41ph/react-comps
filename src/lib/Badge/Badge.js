@@ -1,33 +1,37 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import DeleteIcon from '@material-ui/icons/Close';
+import './Badge.scss';
 
 const propTypes = {
   /**
    * Specifies the text to show in the badge
    */
-  option: PropTypes.string,
+  text: PropTypes.string,
 
   /**
    * Function to remove the badge
    */
-  deselectOption: PropTypes.func,
+  handleOnClick: PropTypes.func,
 
   /**
    * Specifies the background color of the badge
    */
-  badgeBgColor: PropTypes.string
-}
+  bgColor: PropTypes.string
+};
 
-const Badge = ({ option, badgeBgColor, deselectOption }) =>
-  <div
-    className="rc-select-list__selected-badge"
-    onClick={event => deselectOption(event, option)}
-    title="Remove"
-    style={{ backgroundColor: badgeBgColor }}
-  >
-    {option} <DeleteIcon />
+const Badge = ({ text, bgColor, handleOnClick }) => (
+  <div className="rc-badge__wrapper">
+    <div
+      className="rc-badge"
+      onClick={event => handleOnClick(event, text)}
+      title="Deletes"
+      style={{ backgroundColor: bgColor }}
+    >
+      {text} <DeleteIcon />
+    </div>
   </div>
+);
 
 Badge.propTypes = propTypes;
 export default Badge;

@@ -1,0 +1,23 @@
+@import "../theme/theme.scss";
+
+.rc-badge__wrapper {
+  display: inline-block;
+}
+.rc-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 5px 5px 10px;
+  margin: 3px;
+  background-color: $color-primary;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+
+  svg {
+    font-size: 1rem;
+    margin-left: 5px;
+  }
+}

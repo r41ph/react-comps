@@ -1,14 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import cx from 'classnames';
-import "./SelectList.scss";
+import './SelectList.scss';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
-import Badge from "./Badge";
+import Badge from '../Badge/Badge';
 
 const propTypes = {
   /**
-   * This function gets triggered every time the 
+   * This function gets triggered every time the
    * selected options change and lift the selected
    * options to the parent component.
    */
@@ -47,27 +47,20 @@ const propTypes = {
   /**
    * Specifies wether the dropdown allows to select multiple options
    */
-  isMultiSelect: PropTypes.bool,
-
-  /**
-   * Specifies the background color of the badge for the selected
-   * options when isMultiSelect = true
-   */
-  badgeBgColor: PropTypes.string
-}
+  isMultiSelect: PropTypes.bool
+};
 
 const SelectList = props => {
   const {
-    onChangeSelected = () => { },
-    className: customClasses = "",
+    onChangeSelected = () => {},
+    className: customClasses = '',
     options,
     selectWidth,
     bgColor,
     icon: Icon,
     placeholder,
-    label = "",
-    isMultiSelect,
-    badgeBgColor
+    label = '',
+    isMultiSelect
   } = props;
 
   const [isOpen, setOpen] = useState(false);
@@ -76,28 +69,28 @@ const SelectList = props => {
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener("mousedown", onClickOutside);
+      document.addEventListener('mousedown', onClickOutside);
     } else {
-      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener('mousedown', onClickOutside);
     }
 
     return () => {
-      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener('mousedown', onClickOutside);
     };
   }, [isOpen]);
 
   useEffect(() => {
-    onChangeSelected(optionsSelected)
+    onChangeSelected(optionsSelected);
   }, [onChangeSelected, optionsSelected]);
 
   const selectListClasses = cx(
     'rc-select',
-    `${isOpen ? "rc-select-list--open" : ""}`
-  )
+    `${isOpen ? 'rc-select-list--open' : ''}`
+  );
 
   const onToggleSelect = () => {
     setOpen(!isOpen);
-  }
+  };
 
   const onClickOutside = event => {
     if (selectListContainer.current.contains(event.target)) {
@@ -106,7 +99,7 @@ const SelectList = props => {
     }
     // click outside
     setOpen(false);
-  }
+  };
 
   const onHandleSelectOption = event => {
     const { value } = event.currentTarget.dataset;
@@ -115,37 +108,38 @@ const SelectList = props => {
         const updatedOptions = [...optionsSelected];
         const optionIndex = optionsSelected.indexOf(value);
         updatedOptions.splice(optionIndex, 1);
-        setOptionsSelected(updatedOptions)
+        setOptionsSelected(updatedOptions);
       } else {
-        setOptionsSelected([...optionsSelected, value])
+        setOptionsSelected([...optionsSelected, value]);
       }
     } else {
       setOptionsSelected([value]);
       setOpen(!isOpen);
     }
-  }
+  };
 
   const deselectOption = (event, option) => {
     event.stopPropagation();
     const updatedOptions = [...optionsSelected];
     const optionIndex = optionsSelected.indexOf(option);
     updatedOptions.splice(optionIndex, 1);
-    setOptionsSelected(updatedOptions)
-  }
+    setOptionsSelected(updatedOptions);
+  };
 
   const renderSelected = () => {
     if (isMultiSelect) {
-      return optionsSelected.map(option =>
+      return optionsSelected.map(option => (
         <Badge
           key={option}
-          option={option}
-          deselectOption={deselectOption}
-          badgeBgColor={badgeBgColor} />
-      )
+          text={option}
+          handleOnClick={deselectOption}
+          bgColor={'#FFCC00'}
+        />
+      ));
     } else {
-      return optionsSelected[0]
+      return optionsSelected[0];
     }
-  }
+  };
 
   const renderOptions = () => {
     return options.map(item => (
@@ -154,39 +148,48 @@ const SelectList = props => {
         className="rc-select-list__option"
         key={item.value}
         data-value={item.value}
-        onClick={onHandleSelectOption}>
-        {isMultiSelect
-          ? optionsSelected.includes(item.value) ? <CheckBoxIcon /> : <CheckBoxOutlineBlankIcon />
-          : null
-        }
+        onClick={onHandleSelectOption}
+      >
+        {isMultiSelect ? (
+          optionsSelected.includes(item.value) ? (
+            <CheckBoxIcon />
+          ) : (
+            <CheckBoxOutlineBlankIcon />
+          )
+        ) : null}
         {item.value}
-      </li>)
-    )
-  }
+      </li>
+    ));
+  };
 
   return (
     <div
       className={`${selectListClasses} ${customClasses}`}
       style={{ width: selectWidth }}
-      ref={selectListContainer}>
+      ref={selectListContainer}
+    >
       {label ? <label className="rc-select__label">{label}</label> : null}
       <div
         className="rc-select-list"
         style={{ backgroundColor: bgColor }}
-        onClick={onToggleSelect}>
-        {optionsSelected.length > 0
-          ? (<div className="rc-select-list__selected">{renderSelected()}</div>)
-          : placeholder}
+        onClick={onToggleSelect}
+      >
+        {optionsSelected.length > 0 ? (
+          <div className="rc-select-list__selected">{renderSelected()}</div>
+        ) : (
+          placeholder
+        )}
         <div className="rc-select-list__icon">{<Icon />}</div>
       </div>
       <ul
         className="rc-select-list__options"
-        style={{ border: `1px solid ${bgColor}` }}>
+        style={{ border: `1px solid ${bgColor}` }}
+      >
         {renderOptions()}
       </ul>
     </div>
-  )
-}
+  );
+};
 
 SelectList.propTypes = propTypes;
 
