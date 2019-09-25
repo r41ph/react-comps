@@ -17,10 +17,18 @@ const propTypes = {
   /**
    * Specifies the background color of the badge
    */
-  bgColor: PropTypes.string
+  bgColor: PropTypes.string,
+
+  /**
+   * Specifies the badge icon
+   * If non is passed the Material UI X icon
+   * would be used by default.
+   * Accepts any Material UI icon passed as component.
+   */
+  icon: PropTypes.object
 };
 
-const Badge = ({ text, bgColor, handleOnClick }) => (
+const Badge = ({ text, bgColor, handleOnClick, icon: Icon }) => (
   <div className="rc-badge__wrapper">
     <div
       className="rc-badge"
@@ -28,7 +36,7 @@ const Badge = ({ text, bgColor, handleOnClick }) => (
       title="Deletes"
       style={{ backgroundColor: bgColor }}
     >
-      {text} <DeleteIcon />
+      {text} {Icon ? <Icon /> : <DeleteIcon />}
     </div>
   </div>
 );
