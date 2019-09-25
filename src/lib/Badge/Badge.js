@@ -25,15 +25,26 @@ const propTypes = {
    * would be used by default.
    * Accepts any Material UI icon passed as component.
    */
-  icon: PropTypes.object
+  icon: PropTypes.object,
+
+  /**
+   * Specifies the title when hover the barge
+   */
+  title: PropTypes.string
 };
 
-const Badge = ({ text, bgColor, handleOnClick, icon: Icon }) => (
+const Badge = ({
+  text,
+  bgColor,
+  handleOnClick,
+  icon: Icon,
+  title = 'Delete'
+}) => (
   <div className="rc-badge__wrapper">
     <div
       className="rc-badge"
       onClick={event => handleOnClick(event, text)}
-      title="Deletes"
+      title={title}
       style={{ backgroundColor: bgColor }}
     >
       {text} {Icon ? <Icon /> : <DeleteIcon />}
