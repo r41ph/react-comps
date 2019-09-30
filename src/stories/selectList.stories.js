@@ -47,7 +47,6 @@ storiesOf('Select List', module)
       placeholder="Pick options"
       label="Select options from the list"
       isMultiSelect
-      badgeBgColor="#FFCC00"
       onChangeSelected={consoleLogSelected}
     />
   ));
