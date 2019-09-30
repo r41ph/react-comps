@@ -33,13 +33,7 @@ const propTypes = {
   title: PropTypes.string
 };
 
-const Badge = ({
-  text,
-  bgColor,
-  handleOnClick,
-  icon: Icon,
-  title = 'Delete'
-}) => (
+const Badge = ({ text, bgColor, handleOnClick, icon, title = 'Delete' }) => (
   <div className="rc-badge__wrapper">
     <div
       className="rc-badge"
@@ -47,7 +41,7 @@ const Badge = ({
       title={title}
       style={{ backgroundColor: bgColor }}
     >
-      {text} {Icon ? <Icon /> : <DeleteIcon />}
+      {text} {icon ? icon : <DeleteIcon />}
     </div>
   </div>
 );
