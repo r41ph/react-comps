@@ -30,13 +30,25 @@ const propTypes = {
   /**
    * Specifies the title when hover the barge
    */
-  title: PropTypes.string
+  title: PropTypes.string,
+
+  /**
+   * Specifies custom classes
+   */
+  customClass: PropTypes.string
 };
 
-const Badge = ({ text, bgColor, handleOnClick, icon, title = 'Delete' }) => (
+const Badge = ({
+  text,
+  bgColor,
+  handleOnClick,
+  icon,
+  title = 'Delete',
+  customClass
+}) => (
   <div className="rc-badge__wrapper">
     <div
-      className="rc-badge"
+      className={`rc-badge rc-badge-${customClass}`}
       onClick={event => handleOnClick(event, text)}
       title={title}
       style={{ backgroundColor: bgColor }}
