@@ -10,7 +10,7 @@ const propTypes = {
   text: PropTypes.string,
 
   /**
-   * Function to remove the badge
+   * Function to trigger in click
    */
   handleOnClick: PropTypes.func,
 
