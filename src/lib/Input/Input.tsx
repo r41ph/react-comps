@@ -1,56 +1,62 @@
-import './Input.scss';
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import cx from 'classnames';
+import './Input.scss';
 
-const propTypes = {
+interface InputProps {
   /**
    * Specifies input onChange action
    */
-  onChange: PropTypes.func,
+  onHandleChange:
+    | ((event: React.ChangeEvent<HTMLInputElement> | string) => void)
+    | undefined;
 
   /**
    * Sets custom element classnames
    */
-  className: PropTypes.string,
+  className: string;
 
   /**
    * Sets element id
    */
-  id: PropTypes.string,
+  id: string;
 
   /**
    * Sets input type
    */
-  type: PropTypes.string,
+  type: string;
 
   /**
    * Sets the label text
    */
-  labelText: PropTypes.string,
+  labelText: string;
+
+  /**
+   * Sets the aria-label attribute
+   */
+  ariaLabelText: string;
 
   /**
    * Sets the placeholder text
    */
-  placeholder: PropTypes.string,
+  placeholder: string;
 
   /**
    * Sets the input value
    */
-  value: PropTypes.string,
+  value: string;
 
   /**
    * Sets whether the input is required
    */
-  required: PropTypes.bool,
+  required: boolean;
 
   /**
    * Sets whether the input is disabled
    */
-  disabled: PropTypes.bool
-};
+  disabled: boolean;
+}
 
-const Input = props => {
+const Input: FC<InputProps> = props => {
   const {
     placeholder,
     labelText = '',
@@ -58,14 +64,14 @@ const Input = props => {
     value,
     className = '',
     id = '',
-    onChange = () => {},
+    onHandleChange = () => {},
     type = 'text',
     required = false,
     disabled = false
   } = props;
 
-  const handleChange = event => {
-    onChange(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onHandleChange(event.target.value);
   };
 
   const inputClasses = cx('input-field', `${className}`);
@@ -92,7 +98,5 @@ const Input = props => {
     </>
   );
 };
-
-Input.propTypes = propTypes;
 
 export default Input;
