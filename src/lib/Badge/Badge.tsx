@@ -1,23 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import DeleteIcon from '@material-ui/icons/Close';
 import './Badge.scss';
 
-const propTypes = {
+interface BadgeProps {
   /**
    * Specifies the text to show in the badge
    */
-  text: PropTypes.string,
+  text: string;
 
   /**
-   * Function to trigger in click
+   * Function to trigger on click
    */
-  handleOnClick: PropTypes.func,
+  handleOnClick: (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+    text: string
+  ) => void;
 
   /**
    * Specifies the background color of the badge
    */
-  bgColor: PropTypes.string,
+  bgColor: string;
 
   /**
    * Specifies the badge icon
@@ -25,20 +27,20 @@ const propTypes = {
    * would be used by default.
    * Accepts any Material UI icon passed as component.
    */
-  icon: PropTypes.object,
+  icon: object;
 
   /**
    * Specifies the title when hover the barge
    */
-  title: PropTypes.string,
+  title: string;
 
   /**
    * Specifies custom classes
    */
-  customClass: PropTypes.string
-};
+  customClass: string;
+}
 
-const Badge = ({
+const Badge: FC<BadgeProps> = ({
   text,
   bgColor,
   handleOnClick,
@@ -58,5 +60,4 @@ const Badge = ({
   </div>
 );
 
-Badge.propTypes = propTypes;
 export default Badge;
