@@ -1,56 +1,65 @@
-import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, useRef, ComponentType } from 'react';
+// import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './SelectList.scss';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import Badge from '../Badge/Badge';
 
-const propTypes = {
+interface Options {
+  value: string;
+}
+
+interface IProps {
   /**
    * This function gets triggered every time the
    * selected options change and lift the selected
    * options to the parent component.
    */
-  onChangeSelected: PropTypes.func,
+  onChangeSelected: (optionsSelected: string[]) => void;
 
   /**
    * List of select options
    */
-  options: PropTypes.array,
+  options: Options[];
 
   /**
    * Specifies the select list with
    */
-  selectWidth: PropTypes.string,
+  selectWidth: string;
 
   /**
    * Specifies the background color of the select
    */
-  bgColor: PropTypes.string,
+  bgColor: string;
 
   /**
    * Specifies the placeholder text
    */
-  placeholder: PropTypes.string,
+  placeholder: string;
+
+  /**
+   * Optional class names
+   */
+  className: string;
 
   /**
    * Specifies the dropdown label text
    */
-  label: PropTypes.string,
+  label: string;
 
   /**
    * Specifies the dropdown Material UI icon
    */
-  icon: PropTypes.object,
+  icon: ComponentType;
 
   /**
    * Specifies wether the dropdown allows to select multiple options
    */
-  isMultiSelect: PropTypes.bool
-};
+  isMultiSelect: boolean;
+}
 
-const SelectList = props => {
+const SelectList: React.FC<IProps> = props => {
   const {
     onChangeSelected = () => {},
     className: customClasses = '',
@@ -63,9 +72,9 @@ const SelectList = props => {
     isMultiSelect
   } = props;
 
-  const [isOpen, setOpen] = useState(false);
-  const [optionsSelected, setOptionsSelected] = useState([]);
-  const selectListContainer = useRef();
+  const [isOpen, setOpen] = useState<Boolean>(false);
+  const [optionsSelected, setOptionsSelected] = useState<string[]>([]);
+  const selectListContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
@@ -92,8 +101,12 @@ const SelectList = props => {
     setOpen(!isOpen);
   };
 
-  const onClickOutside = event => {
-    if (selectListContainer.current.contains(event.target)) {
+  const onClickOutside = (event: Event) => {
+    if (
+      !selectListContainer.current ||
+      !(event.target instanceof HTMLElement) ||
+      selectListContainer.current.contains(event.target)
+    ) {
       // click inside
       return;
     }
@@ -101,10 +114,10 @@ const SelectList = props => {
     setOpen(false);
   };
 
-  const onHandleSelectOption = event => {
+  const onHandleSelectOption = (event: React.MouseEvent<HTMLElement>) => {
     const { value } = event.currentTarget.dataset;
     if (isMultiSelect) {
-      if (optionsSelected.includes(value)) {
+      if (optionsSelected && optionsSelected.includes(value)) {
         const updatedOptions = [...optionsSelected];
         const optionIndex = optionsSelected.indexOf(value);
         updatedOptions.splice(optionIndex, 1);
@@ -118,7 +131,10 @@ const SelectList = props => {
     }
   };
 
-  const deselectOption = (event, option) => {
+  const deselectOption = (
+    event: React.MouseEvent<HTMLElement>,
+    option: string
+  ) => {
     event.stopPropagation();
     const updatedOptions = [...optionsSelected];
     const optionIndex = optionsSelected.indexOf(option);
@@ -128,7 +144,7 @@ const SelectList = props => {
 
   const renderSelected = () => {
     if (isMultiSelect) {
-      return optionsSelected.map(option => (
+      return optionsSelected.map((option: string) => (
         <Badge
           key={option}
           text={option}
@@ -150,7 +166,7 @@ const SelectList = props => {
         data-value={item.value}
         onClick={onHandleSelectOption}
       >
-        {isMultiSelect ? (
+        {isMultiSelect && optionsSelected ? (
           optionsSelected.includes(item.value) ? (
             <CheckBoxIcon />
           ) : (
@@ -174,7 +190,7 @@ const SelectList = props => {
         style={{ backgroundColor: bgColor }}
         onClick={onToggleSelect}
       >
-        {optionsSelected.length > 0 ? (
+        {optionsSelected && optionsSelected.length > 0 ? (
           <div className="rc-select-list__selected">{renderSelected()}</div>
         ) : (
           placeholder
@@ -190,7 +206,5 @@ const SelectList = props => {
     </div>
   );
 };
-
-SelectList.propTypes = propTypes;
 
 export default SelectList;
