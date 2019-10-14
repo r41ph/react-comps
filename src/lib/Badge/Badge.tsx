@@ -27,17 +27,17 @@ interface BadgeProps {
    * would be used by default.
    * Accepts any Material UI icon passed as component.
    */
-  icon: object;
+  icon?: object;
 
   /**
    * Specifies the title when hover the barge
    */
-  title: string;
+  title?: string;
 
   /**
    * Specifies custom classes
    */
-  customClass: string;
+  customClass?: string;
 }
 
 const Badge: FC<BadgeProps> = ({
