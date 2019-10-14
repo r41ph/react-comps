@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef, ComponentType } from 'react';
-// import PropTypes from 'prop-types';
 import cx from 'classnames';
 import './SelectList.scss';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
