@@ -3,7 +3,7 @@ import cx from 'classnames';
 import ButtonIcon from './ButtonIcon';
 import './Button.scss';
 
-interface ButtonProps {
+interface IProps {
   /**
    * Specifies button click event
    */
@@ -49,7 +49,7 @@ interface ButtonProps {
   iconSize: number;
 }
 
-const Button: FC<ButtonProps> = props => {
+const Button: FC<IProps> = props => {
   const {
     children,
     size = 'md',

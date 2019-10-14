@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import cx from 'classnames';
 import './Input.scss';
 
-interface InputProps {
+interface IProps {
   /**
    * Specifies input onChange action
    */
@@ -56,7 +56,7 @@ interface InputProps {
   disabled: boolean;
 }
 
-const Input: FC<InputProps> = props => {
+const Input: FC<IProps> = props => {
   const {
     placeholder,
     labelText = '',

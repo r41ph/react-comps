@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import DeleteIcon from '@material-ui/icons/Close';
 import './Badge.scss';
 
-interface BadgeProps {
+interface IProps {
   /**
    * Specifies the text to show in the badge
    */
@@ -40,7 +40,7 @@ interface BadgeProps {
   customClass?: string;
 }
 
-const Badge: FC<BadgeProps> = ({
+const Badge: FC<IProps> = ({
   text,
   bgColor,
   handleOnClick,
