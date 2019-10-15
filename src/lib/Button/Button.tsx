@@ -12,30 +12,30 @@ interface IProps {
   /**
    * Set button text
    */
-  children: string;
+  children?: string;
 
   /**
    * Set custom classes
    */
-  className: string;
+  className?: string;
 
   /**
    * Sets component as an anchor link and its reference
    */
-  href: string;
+  href?: string;
 
   /**
    * Specifies a size.
    *
    * @type ('sm'|'md'|'lg'|'full-width')
    */
-  size: string;
+  size?: string;
 
   /**
    * Specifies the Material UI icon to use
    *
    */
-  icon: object;
+  icon?: () => void;
 
   /**
    * Specifies the aria-label text
@@ -46,7 +46,12 @@ interface IProps {
   /**
    * Specifies the icon size in pixels.
    */
-  iconSize: number;
+  iconSize?: number;
+
+  /**
+   * Specifies the text size in pixels.
+   */
+  textSize?: number;
 }
 
 const Button: FC<IProps> = props => {
@@ -57,7 +62,8 @@ const Button: FC<IProps> = props => {
     href,
     icon = null,
     className: customClasses = '',
-    iconSize
+    iconSize,
+    textSize = '1rem'
   } = props;
 
   const buttonClasses = cx(
@@ -92,9 +98,14 @@ const Button: FC<IProps> = props => {
       onClick={handleClick}
       onKeyDown={() => handleKeyDown}
       className={`${buttonClasses} ${customClasses}`}
+      style={{ fontSize: iconSize }}
     >
-      {children}
-      {icon && <ButtonIcon icon={icon} iconSize={iconSize} />}
+      {children && (
+        <span className="rc-button__text" style={{ fontSize: textSize }}>
+          {children}
+        </span>
+      )}
+      {icon && icon()}
     </TagType>
   );
 };
