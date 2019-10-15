@@ -4,6 +4,10 @@
   border: none;
   background-color: $color-primary;
 
+  .rc-button__text {
+    padding-right: 6px;
+  }
+
   &:hover {
     opacity: 0.7;
     cursor: pointer;
@@ -13,7 +17,7 @@
     padding: 10px 20px;
 
     &.rc-button-just-icon {
-      padding: 10px;
+      padding: 10px 13px;
     }
   }
 
@@ -21,7 +25,7 @@
     padding: 20px 40px;
 
     &.rc-button-just-icon {
-      padding: 15px;
+      padding: 15px 18px;
     }
   }
 
@@ -29,7 +33,7 @@
     padding: 30px 60px;
 
     &.rc-button-just-icon {
-      padding: 20px;
+      padding: 20px 23px;
     }
   }
 
@@ -37,11 +41,6 @@
     padding: 20px 40px;
     width: 100%;
     max-width: 100%;
-    font-size: 1rem;
-
-    svg {
-      font-size: 1rem;
-    }
   }
 
   &-with-icon {
@@ -76,7 +75,6 @@
     color: #fff;
 
     &.rc-button-just-icon {
-      // border-radius: 0;
       display: inline-block !important;
       svg {
         border-bottom: 1px solid #fff;
