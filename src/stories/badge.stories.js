@@ -12,6 +12,15 @@ storiesOf('Badge', module)
       source: true
     }
   })
+  .add('Basic', () => (
+    <div className="rc-story">
+      <Badge text="Blueberry" bgColor="purple" />
+      <br />
+      <Badge text="Banana" bgColor="yellow" />
+      <br />
+      <Badge text="Strawberry" />
+    </div>
+  ))
   .add('Custom icon', () => (
     <div className="rc-story">
       <Badge text="Task one" icon={<AssignmentIcon />} />

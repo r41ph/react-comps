@@ -1,58 +1,83 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 import { Manager, Reference, Popper } from 'react-popper';
 import './Tooltip.scss';
 
-const propTypes = {
+type placementOptions =
+  | 'bottom-end'
+  | 'bottom-start'
+  | 'bottom'
+  | 'left-end'
+  | 'left-start'
+  | 'left'
+  | 'right-end'
+  | 'right-start'
+  | 'right'
+  | 'top-end'
+  | 'top-start'
+  | 'top';
+
+interface IProps {
   /**
    * Element that will trigger the tooltip
    */
-  trigger: PropTypes.any,
+  trigger: string | React.ComponentType | Function;
 
   /**
    * Tooltip placement.
    * @default `right`
    */
-  placement: PropTypes.oneOf([
-    'bottom-end',
-    'bottom-start',
-    'bottom',
-    'left-end',
-    'left-start',
-    'left',
-    'right-end',
-    'right-start',
-    'right',
-    'top-end',
-    'top-start',
-    'top'
-  ]),
+  placement?: placementOptions;
 
   /**
    * Specifies the content to show in the tooltip
    */
-  children: PropTypes.any,
+  children: string | HTMLElement;
 
   /**
    * Specifies the tooltip width
    * * Accepts px|em|rem => i.e: width="20rem"
    */
-  width: PropTypes.string,
+  width: string;
 
   /**
    * Tooltip type.
    * `text` => has a dashed underline
    */
-  type: PropTypes.string,
+  type: string;
 
   /**
    * Specifies if the tooltip should open on click event
    */
-  triggerOnClick: PropTypes.bool
-};
+  triggerOnClick: boolean;
+}
 
-const Tooltip = props => {
+interface IPropsTooltipContent {
+  /**
+   * Tooltip placement.
+   * @default `right`
+   */
+  placement?: placementOptions;
+
+  /**
+   * Specifies the content to show in the tooltip
+   */
+  children: any;
+
+  /**
+   * Specifies the tooltip width
+   * * Accepts px|em|rem => i.e: width="20rem"
+   */
+  width: string;
+
+  /**
+   * Tooltip type.
+   * `text` => has a dashed underline
+   */
+  type: string;
+}
+
+const Tooltip: React.FunctionComponent<IProps> = props => {
   const [isHovered, setIsHovered] = useState(false);
   const {
     trigger,
@@ -114,7 +139,12 @@ const Tooltip = props => {
   );
 };
 
-const TooltipContent = ({ placement, width, type, children }) => (
+const TooltipContent: React.FunctionComponent<IPropsTooltipContent> = ({
+  placement,
+  width,
+  type,
+  children
+}) => (
   <TooltipContentPortal>
     <Popper placement={placement}>
       {({ placement, ref, style, arrowProps }) => {
@@ -138,7 +168,7 @@ const TooltipContent = ({ placement, width, type, children }) => (
   </TooltipContentPortal>
 );
 
-const TooltipContentPortal = ({ children }) => {
+const TooltipContentPortal: React.FunctionComponent = ({ children }) => {
   const tooltipContentWrapper = document.createElement('div');
   tooltipContentWrapper.classList.add('rc-tooltip__content-wrapper');
 
@@ -152,5 +182,4 @@ const TooltipContentPortal = ({ children }) => {
   return ReactDOM.createPortal(children, tooltipContentWrapper);
 };
 
-Tooltip.propTypes = propTypes;
 export default Tooltip;

@@ -1,56 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { FC } from 'react';
 import cx from 'classnames';
 import ButtonIcon from './ButtonIcon';
 import './Button.scss';
 
-const propTypes = {
+interface IProps {
   /**
    * Specifies button click event
    */
-  onClick: PropTypes.func,
+  onClick: () => void;
 
   /**
    * Set button text
    */
-  children: PropTypes.string,
+  children: string;
 
   /**
    * Set custom classes
    */
-  className: PropTypes.string,
+  className: string;
 
   /**
    * Sets component as an anchor link and its reference
    */
-  href: PropTypes.string,
+  href: string;
 
   /**
    * Specifies a size.
    *
    * @type ('sm'|'md'|'lg'|'full-width')
    */
-  size: PropTypes.string,
+  size: string;
 
   /**
    * Specifies the Material UI icon to use
    *
    */
-  icon: PropTypes.string,
+  icon: object;
 
   /**
    * Specifies the aria-label text
    *
    */
-  'aria-label': PropTypes.string,
+  'aria-label': string;
 
   /**
    * Specifies the icon size in pixels.
    */
-  iconSize: PropTypes.number
-};
+  iconSize: number;
+}
 
-const Button = props => {
+const Button: FC<IProps> = props => {
   const {
     children,
     size = 'md',
@@ -75,7 +74,7 @@ const Button = props => {
     onClick();
   };
 
-  const handleKeyDown = event => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (
       event.key === ' ' ||
       event.key === 'Enter' ||
@@ -91,7 +90,7 @@ const Button = props => {
     <TagType
       {...props}
       onClick={handleClick}
-      onKeyDown={handleKeyDown}
+      onKeyDown={() => handleKeyDown}
       className={`${buttonClasses} ${customClasses}`}
     >
       {children}
@@ -99,7 +98,5 @@ const Button = props => {
     </TagType>
   );
 };
-
-Button.propTypes = propTypes;
 
 export default Button;
