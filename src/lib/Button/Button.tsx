@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import cx from 'classnames';
-import ButtonIcon from './ButtonIcon';
 import './Button.scss';
 
 interface IProps {
