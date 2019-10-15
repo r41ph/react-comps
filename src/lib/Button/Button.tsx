@@ -92,6 +92,12 @@ const Button: FC<IProps> = props => {
     }
   };
 
+  if (!icon && !children) {
+    throw Error(
+      'Button Component must have one or both "children" and "icon" props.'
+    );
+  }
+
   return (
     <TagType
       {...props}
