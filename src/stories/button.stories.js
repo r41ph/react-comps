@@ -29,27 +29,32 @@ storiesOf('Button', module)
       <Button size="sm">Button Small</Button>
       <Button size="md">Button Medium</Button>
       <Button size="lg">Button Large</Button>
-      <Button size="full-width">Button Full-width</Button>
+      <Button size="full-width">Button Full Width</Button>
     </div>
   ))
   .add('With icon', () => (
     <div className="rc-story story-buttons-with-icon">
       <Button
         size="sm"
-        icon={LaunchIcon}
-        iconSize={16}
+        icon={() => <LaunchIcon />}
+        textSize="12px"
         className="custom-class-here"
       >
         Button Small
       </Button>
-      <Button size="md" icon={LaunchIcon} iconSize={20}>
+      <Button size="md" icon={() => <LaunchIcon />} iconSize="20px">
         Button Medium
       </Button>
-      <Button size="lg" icon={LaunchIcon} iconSize={28}>
+      <Button
+        size="lg"
+        icon={() => <LaunchIcon />}
+        iconSize="28px"
+        textSize="22px"
+      >
         Button Large
       </Button>
-      <Button size="full-width" icon={LaunchIcon} iconSize={20}>
-        Button Full-width
+      <Button size="full-width" icon={() => <LaunchIcon />} iconSize="20px">
+        Button Full Width
       </Button>
     </div>
   ))
@@ -57,9 +62,13 @@ storiesOf('Button', module)
     <div className="rc-story story-buttons-just-icon">
       <h3>Button</h3>
       <div className="buttons">
-        <Button size="sm" icon={LaunchIcon} aria-label="Launch" />
-        <Button size="md" icon={AssignmentIcon} aria-label="Assignment" />
-        <Button size="lg" icon={EmailIcon} aria-label="Email" />
+        <Button size="sm" icon={() => <LaunchIcon />} aria-label="Launch" />
+        <Button
+          size="md"
+          icon={() => <AssignmentIcon />}
+          aria-label="Assignment"
+        />
+        <Button size="lg" icon={() => <EmailIcon />} aria-label="Email" />
       </div>
       <h3>Anchor link</h3>
       <div className="anchors">
@@ -67,21 +76,21 @@ storiesOf('Button', module)
           size="sm"
           href={'/'}
           target="_blank"
-          icon={LaunchIcon}
+          icon={() => <LaunchIcon />}
           aria-label="Launch"
         />
         <Button
           size="md"
           href={'/'}
           target="_blank"
-          icon={AssignmentIcon}
+          icon={() => <AssignmentIcon />}
           aria-label="Assignment"
         />
         <Button
           size="lg"
           href={'/'}
           target="_blank"
-          icon={EmailIcon}
+          icon={() => <EmailIcon />}
           aria-label="Email"
         />
       </div>
