@@ -62,13 +62,24 @@ storiesOf('Button', module)
     <div className="rc-story story-buttons-just-icon">
       <h3>Button</h3>
       <div className="buttons">
-        <Button size="sm" icon={() => <LaunchIcon />} aria-label="Launch" />
+        <Button
+          size="sm"
+          icon={() => <LaunchIcon />}
+          aria-label="Launch"
+          iconSize="20px"
+        />
         <Button
           size="md"
           icon={() => <AssignmentIcon />}
           aria-label="Assignment"
+          iconSize="23px"
         />
-        <Button size="lg" icon={() => <EmailIcon />} aria-label="Email" />
+        <Button
+          size="lg"
+          icon={() => <EmailIcon />}
+          aria-label="Email"
+          iconSize="28px"
+        />
       </div>
       <h3>Anchor link</h3>
       <div className="anchors">
@@ -78,6 +89,7 @@ storiesOf('Button', module)
           target="_blank"
           icon={() => <LaunchIcon />}
           aria-label="Launch"
+          iconSize="20px"
         />
         <Button
           size="md"
@@ -85,6 +97,7 @@ storiesOf('Button', module)
           target="_blank"
           icon={() => <AssignmentIcon />}
           aria-label="Assignment"
+          iconSize="23px"
         />
         <Button
           size="lg"
@@ -92,6 +105,7 @@ storiesOf('Button', module)
           target="_blank"
           icon={() => <EmailIcon />}
           aria-label="Email"
+          iconSize="28px"
         />
       </div>
     </div>
