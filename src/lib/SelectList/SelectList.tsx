@@ -114,7 +114,7 @@ const SelectList: React.FC<IProps> = props => {
   };
 
   const onHandleSelectOption = (event: React.MouseEvent<HTMLElement>) => {
-    const { value } = event.currentTarget.dataset;
+    const { value = '' } = event.currentTarget.dataset;
     if (isMultiSelect) {
       if (optionsSelected && optionsSelected.includes(value)) {
         const updatedOptions = [...optionsSelected];
