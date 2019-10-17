@@ -34,7 +34,7 @@ interface IProps {
    * Specifies the Material UI icon to use
    *
    */
-  icon?: () => void;
+  icon?: () => HTMLDivElement;
 
   /**
    * Specifies the aria-label text
@@ -110,7 +110,7 @@ const Button: FC<IProps> = props => {
           {children}
         </span>
       )}
-      {icon && icon()}
+      {icon && <div className="rc-button__icon">{icon()}</div>}
     </TagType>
   );
 };
