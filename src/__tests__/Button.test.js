@@ -1,36 +1,62 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { expect } from 'chai';
 import Button from '../lib/Button/Button';
 import EmailIcon from '@material-ui/icons/Email';
 
 describe('Button component', () => {
-  it('Button renders children', () => {
+  it('Renders children text', () => {
     const wrapper = shallow(<Button>My Button</Button>);
-    expect(wrapper.text()).to.equal('My Button');
+    expect(wrapper.find('.rc-button').text()).toContain('My Button');
   });
 
-  it('Button renders .rc-button-sm CSS class', () => {
+  it('Small Button renders CSS class ".rc-button-sm"', () => {
     const wrapper = shallow(<Button size="sm">My Button</Button>);
-    expect(wrapper.find('.rc-button-sm')).to.have.lengthOf(1);
+    expect(wrapper.find('.rc-button-sm').length).toBe(1);
   });
 
-  it('Button renders .rc-button-md CSS class', () => {
+  it('Medium Button renders CSS class ".rc-button-md"', () => {
     const wrapper = shallow(<Button size="md">My Button</Button>);
-    expect(wrapper.find('.rc-button-md')).to.have.lengthOf(1);
+    expect(wrapper.find('.rc-button-md').length).toBe(1);
   });
 
-  it('Button renders .rc-button-lg CSS class', () => {
+  it('Large Button renders CSS class ".rc-button-lg"', () => {
     const wrapper = shallow(<Button size="lg">My Button</Button>);
-    expect(wrapper.find('.rc-button-lg')).to.have.lengthOf(1);
+    expect(wrapper.find('.rc-button-lg').length).toBe(1);
   });
 
-  it('Button renders an icon', () => {
+  it('With icon renders ".rc-button__icon" CSS class', () => {
     const wrapper = shallow(
       <Button size="lg" icon={() => <EmailIcon />} aria-label="Email">
         My Button
       </Button>
     );
-    expect(wrapper.find('.rc-button__icon')).to.have.lengthOf(1);
+    expect(wrapper.find('.rc-button__icon').length).toBe(1);
+  });
+
+  it('With icon renders an icon', () => {
+    const wrapper = shallow(
+      <Button size="lg" icon={() => <EmailIcon />} aria-label="Email">
+        My Button
+      </Button>
+    );
+    expect(wrapper.find(EmailIcon).length).toBe(1);
+  });
+
+  it('Button with <a> tag', () => {
+    const wrapper = shallow(
+      <Button size="lg" href="/" aria-label="Email">
+        My Button
+      </Button>
+    );
+    expect(wrapper.type()).toEqual('a');
+  });
+
+  it('Button with <button> tag', () => {
+    const wrapper = shallow(
+      <Button size="lg" icon={() => <EmailIcon />} aria-label="Email">
+        My Button
+      </Button>
+    );
+    expect(wrapper.type()).toEqual('button');
   });
 });
