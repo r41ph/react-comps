@@ -34,7 +34,7 @@ interface IProps {
    * Specifies the Material UI icon to use
    *
    */
-  icon?: () => HTMLDivElement;
+  icon?: () => JSX.Element;
 
   /**
    * Specifies the aria-label text
