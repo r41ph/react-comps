@@ -5,28 +5,49 @@ import EmailIcon from '@material-ui/icons/Email';
 
 describe('Button component', () => {
   it('Renders children text', () => {
-    const wrapper = shallow(<Button>My Button</Button>);
+    const wrapper = shallow(
+      <Button onClick={() => {}} aria-label="My Button">
+        My Button
+      </Button>
+    );
     expect(wrapper.find('.rc-button').text()).toContain('My Button');
   });
 
   it('Small Button renders CSS class ".rc-button-sm"', () => {
-    const wrapper = shallow(<Button size="sm">My Button</Button>);
+    const wrapper = shallow(
+      <Button onClick={() => {}} aria-label="My Button" size="sm">
+        My Button
+      </Button>
+    );
     expect(wrapper.find('.rc-button-sm').length).toBe(1);
   });
 
   it('Medium Button renders CSS class ".rc-button-md"', () => {
-    const wrapper = shallow(<Button size="md">My Button</Button>);
+    const wrapper = shallow(
+      <Button onClick={() => {}} aria-label="My Button" size="md">
+        My Button
+      </Button>
+    );
     expect(wrapper.find('.rc-button-md').length).toBe(1);
   });
 
   it('Large Button renders CSS class ".rc-button-lg"', () => {
-    const wrapper = shallow(<Button size="lg">My Button</Button>);
+    const wrapper = shallow(
+      <Button onClick={() => {}} aria-label="My Button" size="lg">
+        My Button
+      </Button>
+    );
     expect(wrapper.find('.rc-button-lg').length).toBe(1);
   });
 
   it('With icon renders ".rc-button__icon" CSS class', () => {
     const wrapper = shallow(
-      <Button size="lg" icon={() => <EmailIcon />} aria-label="Email">
+      <Button
+        size="lg"
+        onClick={() => {}}
+        aria-label="Email"
+        icon={() => <EmailIcon />}
+      >
         My Button
       </Button>
     );
@@ -35,7 +56,12 @@ describe('Button component', () => {
 
   it('With icon renders an icon', () => {
     const wrapper = shallow(
-      <Button size="lg" icon={() => <EmailIcon />} aria-label="Email">
+      <Button
+        onClick={() => {}}
+        size="lg"
+        aria-label="Email"
+        icon={() => <EmailIcon />}
+      >
         My Button
       </Button>
     );
@@ -44,7 +70,7 @@ describe('Button component', () => {
 
   it('Button with <a> tag', () => {
     const wrapper = shallow(
-      <Button size="lg" href="/" aria-label="Email">
+      <Button size="lg" href="/" onClick={() => {}} aria-label="Email">
         My Button
       </Button>
     );
@@ -53,7 +79,12 @@ describe('Button component', () => {
 
   it('Button with <button> tag', () => {
     const wrapper = shallow(
-      <Button size="lg" icon={() => <EmailIcon />} aria-label="Email">
+      <Button
+        onClick={() => {}}
+        size="lg"
+        icon={() => <EmailIcon />}
+        aria-label="Email"
+      >
         My Button
       </Button>
     );
