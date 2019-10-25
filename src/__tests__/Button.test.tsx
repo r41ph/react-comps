@@ -90,4 +90,21 @@ describe('Button component', () => {
     );
     expect(wrapper.type()).toEqual('button');
   });
+
+  it('Click on the button triggers its callback', () => {
+    const callBackFn = jest.fn();
+    const wrapper = shallow(
+      <Button
+        onClick={callBackFn}
+        size="lg"
+        icon={() => <EmailIcon />}
+        aria-label="Email"
+      >
+        My Button
+      </Button>
+    );
+
+    wrapper.find('.rc-button').simulate('click');
+    expect(callBackFn.mock.calls.length).toBe(1);
+  });
 });
