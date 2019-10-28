@@ -43,7 +43,7 @@ interface IProps {
 const Badge: FC<IProps> = ({
   text,
   bgColor,
-  handleOnClick,
+  handleOnClick = () => {},
   icon,
   title = 'Delete',
   customClass
