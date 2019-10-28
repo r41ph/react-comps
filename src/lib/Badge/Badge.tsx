@@ -11,7 +11,7 @@ interface IProps {
   /**
    * Function to trigger on click
    */
-  handleOnClick: (
+  handleOnClick?: (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     text: string
   ) => void;
@@ -19,7 +19,7 @@ interface IProps {
   /**
    * Specifies the background color of the badge
    */
-  bgColor: string;
+  bgColor?: string;
 
   /**
    * Specifies the badge icon
