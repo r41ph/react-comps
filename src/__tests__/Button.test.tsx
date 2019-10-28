@@ -60,7 +60,7 @@ describe('Button component', () => {
         onClick={() => {}}
         size="lg"
         aria-label="Email"
-        icon={() => <EmailIcon />}
+        icon={<EmailIcon />}
       >
         My Button
       </Button>
@@ -79,12 +79,7 @@ describe('Button component', () => {
 
   it('Button with <button> tag', () => {
     const wrapper = shallow(
-      <Button
-        onClick={() => {}}
-        size="lg"
-        icon={() => <EmailIcon />}
-        aria-label="Email"
-      >
+      <Button onClick={() => {}} size="lg" aria-label="Email">
         My Button
       </Button>
     );
@@ -94,12 +89,7 @@ describe('Button component', () => {
   it('Click on the button triggers its callback', () => {
     const callBackFn = jest.fn();
     const wrapper = shallow(
-      <Button
-        onClick={callBackFn}
-        size="lg"
-        icon={() => <EmailIcon />}
-        aria-label="Email"
-      >
+      <Button onClick={callBackFn} size="lg" aria-label="Email">
         My Button
       </Button>
     );

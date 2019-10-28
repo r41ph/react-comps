@@ -36,24 +36,19 @@ storiesOf('Button', module)
     <div className="rc-story story-buttons-with-icon">
       <Button
         size="sm"
-        icon={() => <LaunchIcon />}
+        icon={<LaunchIcon />}
         textSize="12px"
         className="custom-class-here"
       >
         Button Small
       </Button>
-      <Button size="md" icon={() => <LaunchIcon />} iconSize="20px">
+      <Button size="md" icon={<LaunchIcon />} iconSize="20px">
         Button Medium
       </Button>
-      <Button
-        size="lg"
-        icon={() => <LaunchIcon />}
-        iconSize="28px"
-        textSize="22px"
-      >
+      <Button size="lg" icon={<LaunchIcon />} iconSize="28px" textSize="22px">
         Button Large
       </Button>
-      <Button size="full-width" icon={() => <LaunchIcon />} iconSize="20px">
+      <Button size="full-width" icon={<LaunchIcon />} iconSize="20px">
         Button Full Width
       </Button>
     </div>
@@ -64,19 +59,19 @@ storiesOf('Button', module)
       <div className="buttons">
         <Button
           size="sm"
-          icon={() => <LaunchIcon />}
+          icon={<LaunchIcon />}
           aria-label="Launch"
           iconSize="20px"
         />
         <Button
           size="md"
-          icon={() => <AssignmentIcon />}
+          icon={<AssignmentIcon />}
           aria-label="Assignment"
           iconSize="23px"
         />
         <Button
           size="lg"
-          icon={() => <EmailIcon />}
+          icon={<EmailIcon />}
           aria-label="Email"
           iconSize="28px"
         />
@@ -87,7 +82,7 @@ storiesOf('Button', module)
           size="sm"
           href={'/'}
           target="_blank"
-          icon={() => <LaunchIcon />}
+          icon={<LaunchIcon />}
           aria-label="Launch"
           iconSize="20px"
         />
@@ -95,7 +90,7 @@ storiesOf('Button', module)
           size="md"
           href={'/'}
           target="_blank"
-          icon={() => <AssignmentIcon />}
+          icon={<AssignmentIcon />}
           aria-label="Assignment"
           iconSize="23px"
         />
@@ -103,7 +98,7 @@ storiesOf('Button', module)
           size="lg"
           href={'/'}
           target="_blank"
-          icon={() => <EmailIcon />}
+          icon={<EmailIcon />}
           aria-label="Email"
           iconSize="28px"
         />
