@@ -54,7 +54,7 @@ describe('Button component', () => {
     expect(wrapper.find('.rc-button__icon').length).toBe(1);
   });
 
-  it('With icon renders an icon', () => {
+  it('With icon renders a Material UI icon', () => {
     const wrapper = shallow(
       <Button
         onClick={() => {}}
