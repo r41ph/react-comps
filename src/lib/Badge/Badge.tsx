@@ -50,7 +50,7 @@ const Badge: FC<IProps> = ({
 }) => (
   <div className="rc-badge__wrapper">
     <div
-      className={`rc-badge rc-badge-${customClass}`}
+      className={`rc-badge ${customClass ? `rc-badge-${customClass}` : ''}`}
       onClick={event => handleOnClick(event, text)}
       title={title}
       style={{ backgroundColor: bgColor }}
