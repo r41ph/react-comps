@@ -27,7 +27,7 @@ export default App;
 
 ## Demo
 
-https://r4lfl4b.github.io/react-comps
+https://r41ph.github.io/react-comps
 
 ## Development
 
